@@ -63,6 +63,12 @@ class MainActivity : AppCompatActivity() {
 
         val btnVideoLink = findViewById<Button>(R.id.videoBtn)
         btnVideoLink.setOnClickListener{
+            if(item.video.toString().isEmpty())
+            {
+                AppUtils.showSnackMessage("Video Not Available",detailContainer)
+                return@setOnClickListener
+            }
+
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.video.toString()))
             intent.setPackage("com.google.android.youtube")
             if (intent.resolveActivity(packageManager) != null) {

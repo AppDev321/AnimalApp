@@ -36,14 +36,21 @@ class LoginActivity : AppCompatActivity() {
         loginButton.setOnClickListener {
             val email = findViewById<EditText>(R.id.editTextEmail)
             val password = findViewById<EditText>(R.id.editTextPassword)
-
-                if(BuildConfig.DEBUG) {
+            if( email.text.toString().isEmpty() ||
+                password.text.toString().isEmpty())
+            {
+                AppUtils.showSnackMessage("Please enter Email/Password", findViewById(R.id.btnLogin))
+            }
+            else {
+                getUserLogin(email.text.toString(), password.text.toString())
+            }
+                /*if(BuildConfig.DEBUG) {
                     getUserLogin("numiraaj@gmail.com", "123456")
                 }
             else
                 { getUserLogin(email.text.toString(), password.text.toString())
 
-                }
+                }*/
         }
 
 

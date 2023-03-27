@@ -26,13 +26,24 @@ class SignUpActivity : AppCompatActivity() {
             val lastName = findViewById<EditText>(R.id.editTextLastName)
             val phone = findViewById<EditText>(R.id.editTextPhone)
 
-            setUserSignUp(
-                email.text.toString(),
-                password.text.toString(),
-                firstName.text.toString(),
-                lastName.text.toString(),
-                phone.text.toString()
-            )
+
+            if( email.text.toString().isEmpty() ||
+            password.text.toString().isEmpty()||
+            firstName.text.toString().isEmpty()||
+            lastName.text.toString().isEmpty() ||
+            phone.text.toString().isEmpty())
+            {
+                AppUtils.showSnackMessage("Please enter detail", findViewById(R.id.btnSignUp))
+            }
+            else {
+                setUserSignUp(
+                    email.text.toString(),
+                    password.text.toString(),
+                    firstName.text.toString(),
+                    lastName.text.toString(),
+                    phone.text.toString()
+                )
+            }
 
         }
     }
