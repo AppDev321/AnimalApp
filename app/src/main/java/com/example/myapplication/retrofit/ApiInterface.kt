@@ -40,4 +40,13 @@ interface ApiInterface {
         @Field("action") action: String
 
     ): Call<GeneralResponse>
+
+
+
+    @POST("exec")
+    @FormUrlEncoded
+    fun getIngredientList(
+        @Field("action") action: String
+
+    ): Call<GeneralResponse>
 }

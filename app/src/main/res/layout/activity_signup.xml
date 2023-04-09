@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="@drawable/login_bk"
+    android:background="@color/white"
     android:focusableInTouchMode="true">
 
     <LinearLayout android:layout_width="match_parent"
@@ -99,7 +99,7 @@
     <Button
         android:id="@+id/btnSignUp"
         style="@style/loginButton"
-        android:text="Signup"
+        android:text="Sign up"
         android:layout_gravity="right"
         android:layout_marginTop="@dimen/loginViewsMargin"/>
 
