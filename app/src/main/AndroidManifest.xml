@@ -15,6 +15,10 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".activity.FeedActivity"
+            android:exported="false"
+            android:theme="@style/Theme.MyApplication.NoActionBar" />
+        <activity
             android:name=".activity.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.MyApplication.NoActionBar">
@@ -27,10 +31,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.MyApplication.NoActionBar">
-
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.SignUpActivity"
             android:exported="true"
@@ -39,7 +40,6 @@
         <activity
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".activity.NutritionalActivity"
             android:screenOrientation="portrait" />

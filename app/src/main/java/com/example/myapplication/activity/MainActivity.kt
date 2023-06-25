@@ -4,32 +4,26 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.App
 import com.example.myapplication.R
 import com.example.myapplication.model.AnimalData
-import com.example.myapplication.model.GeneralResponse
-import com.example.myapplication.retrofit.ApiClient
-import com.example.myapplication.retrofit.ApiInterface
 import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.ProgressDialog
 import com.example.myapplication.viewmodel.AppViewModel
 import com.example.myapplication.viewmodel.Result
-import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.google.gson.Gson
-import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import java.util.*
-import kotlin.collections.ArrayList
 
 
 class MainActivity : AppCompatActivity() {
@@ -45,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_main)
-        setTitle("Weight Measurement")
+        setTitle(resources.getString(R.string.activity_weight))
 
 dropDownView = findViewById(R.id.TextInputLayout)
 
@@ -92,12 +86,12 @@ dropDownView = findViewById(R.id.TextInputLayout)
             }
         }
 
-
         viewModel.fetchAnimalList()
+        viewModel.fetchFeedCategoryList()
+
 
 
     }
-
 
     private fun loadAnimalDetails(item: AnimalData) {
 
@@ -198,6 +192,19 @@ dropDownView = findViewById(R.id.TextInputLayout)
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
             }
         }
+
+
+        val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
+        btnFeedNutrition.setOnClickListener {
+        val feedData = viewModel._feedDataResponse
+            if(feedData.categoryList.isNotEmpty()) {
+                FeedActivity.feedResponseData = feedData
+                startActivity(Intent(this, FeedActivity::class.java))
+            }
+            else
+                AppUtils.showSnackMessage("No Feed Category found",btnFeedNutrition)
+        }
+
     }
 
     private fun showAnimalListing() {

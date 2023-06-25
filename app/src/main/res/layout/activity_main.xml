@@ -17,7 +17,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:hint="Select Animal"
+            android:hint="@string/txt_select_animal"
             android:visibility="gone">
 
             <AutoCompleteTextView
@@ -41,7 +41,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Picture Demonstration"
+                android:text="@string/pic_demo"
                 android:textStyle="bold" />
 
 
@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Video Demonstration"
+                    android:text="@string/vid_demo"
                     android:textStyle="bold" />
 
                 <Button
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
 
                     android:layout_marginStart="20dp"
-                    android:text="Play Video" />
+                    android:text="@string/play_video" />
             </LinearLayout>
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center_horizontal"
-                android:text="Enter Detail of Your Animal"
+                android:text="@string/detail_animal"
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -111,7 +111,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="Girth">
+                    android:hint="@string/txt_girth">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_weight="1"
-                    android:hint="Length">
+                    android:hint="@string/txt_length">
 
                     <!--this is the actual edit text which takes the input-->
                     <com.google.android.material.textfield.TextInputEditText
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="Check" />
+                    android:text="@string/txt_check" />
             </LinearLayout>
 
             <LinearLayout
@@ -171,14 +171,28 @@
                     android:textSize="18dp"
                     android:textStyle="bold" />
             </LinearLayout>
-            <Button
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:gravity="center">
+            <Button
+
                 android:id="@+id/btnNutrition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
+
                 android:layout_gravity="center_horizontal"
-                android:text="Get Food Nutrition" />
+                android:text="@string/txt_btn_food_nutrition" />
+                <Button
+
+                    android:id="@+id/btnFeedNutrition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/txt_btn_feed_nutrition" />
+            </LinearLayout>
         </LinearLayout>
 
 

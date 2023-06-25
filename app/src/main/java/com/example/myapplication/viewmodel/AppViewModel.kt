@@ -2,8 +2,7 @@ package com.example.myapplication.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myapplication.model.AnimalData
-import com.example.myapplication.model.GeneralResponse
+import com.example.myapplication.model.*
 import com.example.myapplication.retrofit.ApiClient
 import com.example.myapplication.retrofit.ApiInterface
 import com.google.gson.Gson
@@ -21,6 +20,17 @@ class AppViewModel : ViewModel() {
     private val _apiResult = MutableSharedFlow<Result<GeneralResponse>>()
     val apiResult = _apiResult.asSharedFlow()
 
+    private var _feedCatList : MutableList<FeedCategory> = arrayListOf()
+    val getFeedCategoryList = _feedCatList
+
+    private var _feedSubCatList : MutableList<FeedSubCategory> = arrayListOf()
+    val getfeedSubCatList = _feedSubCatList
+
+    private var _feedItemsList : MutableList<FeedItem> = arrayListOf()
+    val getfeedItemsList = _feedItemsList
+
+     var _feedDataResponse = FeedDataResponse()
+     val getFeedDataResposne = _feedDataResponse
 
     fun showMessage(message: String) {
         viewModelScope.launch {
@@ -74,6 +84,7 @@ class AppViewModel : ViewModel() {
                     call.execute().body() as GeneralResponse
                 }
                 _apiResult.emit(Result.Success(response))
+
             } catch (e: Exception) {
                 _apiResult.emit(Result.Error(e))
             }
@@ -85,7 +96,32 @@ class AppViewModel : ViewModel() {
         return ((girth * girth * length) / 300)*0.454
     }
 
+    fun fetchFeedCategoryList(wantResponse:Boolean= false) {
+        viewModelScope.launch {
 
+            if(wantResponse)
+                _apiResult.emit(Result.Loading)
+            try {
+                val apiInterface = ApiClient.client.create(ApiInterface::class.java)
+                val call = apiInterface.getFeedCatList("feedCat-get")
+                val response = withContext(Dispatchers.IO) {
+                    call.execute().body() as GeneralResponse
+                }
+
+                val data = response.singleData as FeedDataResponse
+                _feedDataResponse = data
+                _feedCatList.addAll(data.categoryList)
+                _feedSubCatList.addAll(data.subCategoryList)
+                _feedItemsList.addAll(data.feetItemsList)
+
+                if(wantResponse)
+                    _apiResult.emit(Result.Success(response))
+            } catch (e: Exception) {
+                if(wantResponse)
+                    _apiResult.emit(Result.Error(e))
+            }
+        }
+    }
 }
 
 

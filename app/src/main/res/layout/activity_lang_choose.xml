@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+ android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+   >
+
+    <TextView
+
+        android:id="@+id/tvWelcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/txt_change_lang"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        />
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+    <Button
+        android:id="@+id/btnEnglish"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+ android:layout_margin="10dp"
+        android:text="@string/txt_eng_lang"
+        android:textAllCaps="false"
+        android:background="@color/primary_app_color"
+        android:textColor="@color/white"
+ />
+
+    <Button
+        android:id="@+id/btnHindi"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:text="@string/txt_hindi_lang"
+        android:textAllCaps="false"
+        android:background="@color/primary_app_color"
+        android:textColor="@color/white"
+    />
+
+    <Button
+        android:id="@+id/btnMarathi"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text="@string/txt_marathi_lang"
+        android:layout_margin="10dp"
+        android:textAllCaps="false"
+        android:background="@color/primary_app_color"
+        android:textColor="@color/white"
+       />
+    </LinearLayout>
+
+</LinearLayout>

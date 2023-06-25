@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="register">नोंदणी कराा</string>
+    <string name="login_email_hint">ईमेल</string>
+    <string name="login_password_hint">ईमेल पासवर्ड</string>
+    <string name="signup_login_hint">आधीपासूनच एक खाते आहे? साइन इन करा</string>
+    <string name="login_signup_hint">खाते नाही? साइन अप करा</string>
+    <string name="login_first_name_hint">पहिले नाव</string>
+    <string name="login_last_name_hint">आडनाव</string>
+    <string name="login_mobile_number_hint">फोन नंबर</string>
+    <string name="txt_register">साइनअप करा</string>
+    <string name="activity_weight">वजन मापन</string>
+    <string name="vid_demo">व्हिडिओ प्रात्यक्षिक</string>
+    <string name="pic_demo">चित्र प्रात्यक्षिक</string>
+    <string name="play_video">व्हिडिओ प्ले करा</string>
+    <string name="detail_animal">आपल्या प्राण्याचे तपशील प्रविष्ट करा</string>
+    <string name="txt_girth">घेर</string>
+    <string name="txt_length">लांबी</string>
+    <string name="txt_check">तपासा</string>
+    <string name="txt_weight">वजन</string>
+    <string name="txt_btn_food_nutrition">अन्न पोषण</string>
+    <string name="txt_btn_feed_nutrition">फीड पोषण</string>
+    <string name="txt_change_lang">अॅप भाषा निवडा</string>
+    <string name="txt_login">लॉगिन करा</string>
+    <string name="txt_select_animal">प्राणी निवडा</string>
+</resources>

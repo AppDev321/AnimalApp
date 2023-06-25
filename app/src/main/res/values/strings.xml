@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Animal App</string>
+    <string name="app_name" translatable="false">Animal App</string>
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
@@ -8,5 +8,32 @@
     <string name="login_first_name_hint">First Name</string>
     <string name="login_last_name_hint">Last Name</string>
     <string name="login_mobile_number_hint">Phone Number</string>
-    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="title_activity_splash_screen" translatable="false">SplashScreen</string>
+
+    <string name="activity_weight">Weight Measurement</string>
+    <string name="vid_demo">Video Demonstration</string>
+    <string name="pic_demo">Picture Demonstration</string>
+    <string name="play_video">Play Video</string>
+    <string name="detail_animal">Enter details of your animal</string>
+    <string name="txt_girth">Girth</string>
+    <string name="txt_length">Length</string>
+    <string name="txt_check">Check</string>
+    <string name="txt_weight">Weight</string>
+    <string name="txt_btn_food_nutrition">Food Nutrition</string>
+    <string name="txt_btn_feed_nutrition">Feed Nutrition</string>
+<string name="txt_select_animal">Select Animal</string>
+<string name="txt_register">SignUp</string>
+    <string name="txt_change_lang">Select App Language</string>
+    <string name="txt_eng_lang" translatable="false">English</string>
+    <string name="txt_hindi_lang"  translatable="false">Hindi</string>
+    <string name="txt_marathi_lang"  translatable="false">Marathi</string>
+    <string name="txt_login">Login</string>
+
+
+
+
+    <string name="language_switcher_dialog_title" translatable="false">Language</string>
+    <string name="language_switcher_positive_button" translatable="false">Ok</string>
+    <string name="language_switcher_negative_button" translatable="false">Cancel</string>
+
 </resources>
