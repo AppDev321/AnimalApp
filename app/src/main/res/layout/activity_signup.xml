@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,10 +16,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+       >
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,41 +26,28 @@
             android:layout_marginTop="@dimen/loginViewsMargin" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputFirstName"
+            android:id="@+id/textInputName"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+     >
 
             <EditText
                 android:id="@+id/editTextFirstName"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_first_name_hint"
+                android:hint="@string/name"
                 android:inputType="textPersonName"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputLastName"
-            style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
-
-            <EditText
-                android:id="@+id/editTextLastName"
-                style="@style/modifiedEditText"
-                android:hint="@string/login_last_name_hint"
-                android:inputType="textPersonName"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputMobile"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+          >
 
             <EditText
                 android:id="@+id/editTextPhone"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_mobile_number_hint"
+                android:hint="@string/mobile"
                 android:inputType="phone"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -71,12 +55,12 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputEmail"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+           >
 
             <EditText
                 android:id="@+id/editTextEmail"
                 style="@style/modifiedEditText"
-                android:hint="@string/login_email_hint"
+                android:hint="@string/email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -84,8 +68,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputPassword"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
-
+           >
             <EditText
                 android:id="@+id/editTextPassword"
                 style="@style/modifiedEditText"
@@ -93,7 +76,152 @@
                 android:inputType="textPassword"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputVillage"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextVillage"
+                style="@style/modifiedEditText"
+                android:hint="@string/village"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputDistrict"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextDistrict"
+                style="@style/modifiedEditText"
+                android:hint="@string/district"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputTehsil"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextTehsil"
+                style="@style/modifiedEditText"
+                android:hint="@string/tehsil"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputState"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextState"
+                style="@style/modifiedEditText"
+                android:hint="@string/state"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputPin"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextPin"
+                style="@style/modifiedEditText"
+                android:hint="@string/pin"
+                android:inputType="number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLand"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextLand"
+                style="@style/modifiedEditText"
+                android:hint="@string/land"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputHybrid"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextHybrid"
+                style="@style/modifiedEditText"
+                android:hint="@string/hybrid"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputNativ"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextNative"
+                style="@style/modifiedEditText"
+                android:hint="@string/cow"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputBuffalow"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextBuffalow"
+                style="@style/modifiedEditText"
+                android:hint="@string/buffalo"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputOx"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextOx"
+                style="@style/modifiedEditText"
+                android:hint="@string/ox"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputGoat"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextGoat"
+                style="@style/modifiedEditText"
+                android:hint="@string/goat"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputSheep"
+            style="@style/editboxStyle"
+            >
+            <EditText
+                android:id="@+id/editTextSheep"
+                style="@style/modifiedEditText"
+                android:hint="@string/sheep"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
         <Button
             android:id="@+id/btnSignUp"
             style="@style/loginButton"
@@ -109,5 +237,12 @@
             android:textColor="@color/primaryTextColor"
             android:text="@string/signup_login_hint"
             android:layout_marginTop="@dimen/loginViewsMargin" />
+
+
+        <View
+
+            style="@style/editboxStyle"
+            android:layout_height="@dimen/_50sdp"
+           />
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -8,7 +8,6 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:focusableInTouchMode="true"
    >
 
@@ -16,6 +15,7 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_180sdp"
+        android:padding="@dimen/_30sdp"
         android:src="@drawable/ic_launcher"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -41,7 +41,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputEmail"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+          >
 
             <EditText
                 android:id="@+id/editTextEmail"
@@ -54,7 +54,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputPassword"
             style="@style/editboxStyle"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+         >
 
             <EditText
                 android:id="@+id/editTextPassword"

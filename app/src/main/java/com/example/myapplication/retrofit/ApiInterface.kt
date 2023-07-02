@@ -25,12 +25,24 @@ interface ApiInterface {
     @FormUrlEncoded
     fun signUpUser(
         @Field("action") action: String,
-        @Field("vEmail") email: String,
-        @Field("vPassword") password: String,
-        @Field("vFirstName") firstName: String,
-        @Field("vLastName") lastName: String,
-        @Field("vPhone") phone: String,
-    ): Call<GeneralResponse>
+        @Field("vEmail") email:String,
+        @Field("vPassword") password:String,
+        @Field("vFirstName") firstName:String,
+        @Field("vPhone") phone:String,
+        @Field("vVillage") village:String,
+        @Field("vDistrict") district:String,
+        @Field("vState") state:String,
+        @Field("vTehsil") tehsil:String,
+        @Field("vPin") pin:String,
+        @Field("vLand") land:String,
+        @Field("vHybrid") hybrid:String,
+        @Field("vNative") native:String,
+        @Field("vBuffalow") buffalow:String,
+        @Field("vGoat") goat:String,
+        @Field("vOx") ox:String,
+        @Field("vSheep") sheep:String,
+
+        ): Call<GeneralResponse>
 
 
 

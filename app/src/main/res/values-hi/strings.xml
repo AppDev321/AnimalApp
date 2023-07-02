@@ -27,4 +27,24 @@
     <string name="txt_login">लॉग इन करें</string>
     <string name="txt_select_animal">पशु का चयन करें</string>
 
+
+
+    <string name="name">नाम</string>
+    <string name="mobile">मोबाईल नंबर</string>
+    <string name="email">ई-मेल</string>
+    <string name="village">ग्राम</string>
+    <string name="tehsil">तहसील</string>
+    <string name="district">जिला</string>
+    <string name="state">राज्य</string>
+    <string name="pin">पिन कोड</string>
+    <string name="land">भूमि (एकड़ में)</string>
+    <string name="hybrid">संकर गाय</string>
+    <string name="cow">देशी गाय</string>
+    <string name="buffalo">भैंस</string>
+    <string name="ox">बैल</string>
+    <string name="goat">बकरी</string>
+    <string name="sheep">भेड़</string>
+
+
+
 </resources>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Animal App</string>
+    <string name="app_name" translatable="false">पशु आहार</string>
     <string name="register">REGISTER</string>
     <string name="login_email_hint">Email</string>
     <string name="login_password_hint">Password</string>
@@ -35,5 +35,25 @@
     <string name="language_switcher_dialog_title" translatable="false">Language</string>
     <string name="language_switcher_positive_button" translatable="false">Ok</string>
     <string name="language_switcher_negative_button" translatable="false">Cancel</string>
+
+
+    <!--Sign UP-->
+
+    <string name="name">Name</string>
+    <string name="mobile">Mobile Number</string>
+    <string name="email">Email</string>
+    <string name="village">Village</string>
+    <string name="tehsil">Tehsil</string>
+    <string name="district">District</string>
+    <string name="state">State</string>
+    <string name="pin">Pin code</string>
+    <string name="land">Land(in acres)</string>
+    <string name="hybrid">Hybrid Cow</string>
+    <string name="cow">Native Cow</string>
+    <string name="buffalo">Buffalo</string>
+    <string name="ox">Ox</string>
+    <string name="goat">Goat</string>
+    <string name="sheep">Sheep</string>
+
 
 </resources>
