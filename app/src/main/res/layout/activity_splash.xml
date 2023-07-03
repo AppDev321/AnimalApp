@@ -1,44 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:gravity="center"
+    android:gravity="center_vertical"
+    android:layout_marginLeft="@dimen/_30sdp"
+    android:layout_marginRight="@dimen/_30sdp"
     android:orientation="vertical">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_150sdp"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="5">
 
         <ImageView
-            android:padding="@dimen/_30sdp"
+
+            android:padding="@dimen/_15sdp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/ic_first_logo" />
+        <View
 
-        <ImageView
-            android:padding="@dimen/_30sdp"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            />
+
+        <ImageView
+            android:padding="@dimen/_15sdp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:src="@drawable/ic_sec_logo" />
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/_20sdp"
+android:padding="@dimen/_15sdp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_border"
 
+
+        android:orientation="vertical">
     <TextView
+        android:textSize = "@dimen/_25sdp"
         android:textStyle="bold"
-        android:textColor="@color/primary_app_color"
+        android:textColor="#B53107"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="पशु आहार\n
-शबरी कृषी प्रतिष्टान संचलित\n,
-कृषी विज्ञान केंद्र, सोलापूर." />
+
+        android:text="पशु आहार" />
+
+        <TextView
+            android:textSize = "@dimen/_15sdp"
+            android:textColor="@color/primary_app_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="शबरी कृषी प्रतिष्टान संचलित,\n कृषी विज्ञान केंद्र, सोलापूर." />
+    </LinearLayout>
 
 </LinearLayout>
