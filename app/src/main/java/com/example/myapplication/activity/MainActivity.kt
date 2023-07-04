@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_main)
-        setTitle(resources.getString(R.string.app_title_name))
+
 
 
         dropDownView = findViewById(R.id.TextInputLayout)
@@ -68,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                                 animalDataList.add(animalData)
                             }
                             listAnimals = animalDataList
+
                             dropDownView.visibility = View.VISIBLE
                             showAnimalListing()
                         }
@@ -220,8 +221,7 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = ArrayAdapter(this, R.layout.dropdown_item, animalNames)
         autoCompleteTextView.setAdapter(adapter)
-
-
+        autoCompleteTextView.showDropDown()
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
 
             val item = listAnimals[position]
