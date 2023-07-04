@@ -54,9 +54,9 @@ class LoginActivity : AppCompatActivity() {
 
             val email = findViewById<EditText>(R.id.editTextEmail)
             val password = findViewById<EditText>(R.id.editTextPassword)
-            if (BuildConfig.DEBUG) {
+           /* if (BuildConfig.DEBUG) {
                 viewModel.loginUser("numiraaj@gmail.com", "123456")
-            } else {
+            } else {*/
                 if (email.text.toString().isEmpty() ||  password.text.toString().isEmpty() ) {
                     AppUtils.showSnackMessage(
                         "Please enter Email/Password",
@@ -66,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     viewModel.loginUser(email.text.toString(), password.text.toString())
 
                 }
-     }
+    // }
         }
 
 
