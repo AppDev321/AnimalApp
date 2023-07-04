@@ -9,6 +9,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
@@ -53,9 +54,9 @@ class LoginActivity : AppCompatActivity() {
 
             val email = findViewById<EditText>(R.id.editTextEmail)
             val password = findViewById<EditText>(R.id.editTextPassword)
-           /* if (BuildConfig.DEBUG) {
+            if (BuildConfig.DEBUG) {
                 viewModel.loginUser("numiraaj@gmail.com", "123456")
-            } else {*/
+            } else {
                 if (email.text.toString().isEmpty() ||  password.text.toString().isEmpty() ) {
                     AppUtils.showSnackMessage(
                         "Please enter Email/Password",
@@ -65,7 +66,7 @@ class LoginActivity : AppCompatActivity() {
                     viewModel.loginUser(email.text.toString(), password.text.toString())
 
                 }
-      // }
+     }
         }
 
 
@@ -98,6 +99,10 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        toolbar.title = ""
+        setSupportActionBar(toolbar)
 
 
     }

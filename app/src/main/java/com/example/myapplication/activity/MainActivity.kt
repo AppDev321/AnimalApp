@@ -39,9 +39,10 @@ class MainActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_main)
-        setTitle(resources.getString(R.string.activity_weight))
+        setTitle(resources.getString(R.string.app_title_name))
 
-dropDownView = findViewById(R.id.TextInputLayout)
+
+        dropDownView = findViewById(R.id.TextInputLayout)
 
         detailContainer = findViewById(R.id.continer_detail)
 

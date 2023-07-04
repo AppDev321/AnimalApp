@@ -39,7 +39,7 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_40sdp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_120sdp"
         android:src="@drawable/logo_cow" />
@@ -49,8 +49,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="paSau Aahar"
-        android:textColor="#FF00FB"
+        android:text="@string/app_title_name"
+        android:textColor="#9C27B0"
         android:textSize="@dimen/_50sdp"
         />
     <LinearLayout
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="nकृषि विज्ञान केंद्र, सोलापूर."
+            android:text="कृषि विज्ञान केंद्र, सोलापूर."
             android:textColor="@color/primary_app_color"
             android:textSize="@dimen/_27sdp"
             android:textStyle="bold" />

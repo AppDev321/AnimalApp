@@ -24,7 +24,6 @@ class FeedActivity : AppCompatActivity() {
 
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.title.text=(resources.getString(R.string.txt_btn_feed_nutrition))
 
 
         val categoryPagerAdapter = CategoryPagerAdapter(this, supportFragmentManager,

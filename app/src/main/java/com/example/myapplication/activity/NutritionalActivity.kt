@@ -40,7 +40,7 @@ class NutritionalActivity : AppCompatActivity() {
 
 
         setContentView(R.layout.activity_nutrition)
-        setTitle("Add Nutritions")
+
 
         dropDownView = findViewById(R.id.TextInputLayout)
 

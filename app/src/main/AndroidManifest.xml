@@ -39,7 +39,8 @@
             android:theme="@style/Theme.MyApplication.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+           />
         <activity
             android:name=".activity.NutritionalActivity"
             android:screenOrientation="portrait" />
