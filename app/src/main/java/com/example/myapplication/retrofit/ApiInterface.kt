@@ -16,8 +16,8 @@ interface ApiInterface {
     @FormUrlEncoded
     fun loginUser(
         @Field("action") action: String,
-        @Field("vEmail") email: String,
-        @Field("vPassword") password: String
+        @Field("vPhone") phone: String,
+
     ): Call<GeneralResponse>
 
 
@@ -26,7 +26,6 @@ interface ApiInterface {
     fun signUpUser(
         @Field("action") action: String,
         @Field("vEmail") email:String,
-        @Field("vPassword") password:String,
         @Field("vFirstName") firstName:String,
         @Field("vPhone") phone:String,
         @Field("vVillage") village:String,
@@ -41,6 +40,16 @@ interface ApiInterface {
         @Field("vGoat") goat:String,
         @Field("vOx") ox:String,
         @Field("vSheep") sheep:String,
+
+        ): Call<GeneralResponse>
+
+
+    @POST("exec")
+    @FormUrlEncoded
+    fun forgotPhone(
+        @Field("action") action: String,
+        @Field("vEmail") email:String,
+        @Field("vName") firstName:String,
 
         ): Call<GeneralResponse>
 

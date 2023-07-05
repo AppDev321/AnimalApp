@@ -67,7 +67,7 @@
             android:gravity="center"
             android:text="वरिष्ठ शास्त्रज्ञ व प्रमुख"
             android:textColor="#B53107"
-            android:textSize="@dimen/_22sdp"
+            android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
 
         <TextView
@@ -76,7 +76,7 @@
             android:gravity="center"
             android:text="शबरी कृषि प्रतिष्ठान संचलित"
             android:textColor="@color/primary_app_color"
-            android:textSize="@dimen/_22sdp"
+            android:textSize="@dimen/_20sdp"
             android:textStyle="bold" />
         <TextView
             android:layout_width="match_parent"

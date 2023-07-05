@@ -39,12 +39,12 @@ class AppViewModel : ViewModel() {
     }
 
 
-    fun loginUser(email: String, password: String) {
+    fun loginUser(phone: String) {
         viewModelScope.launch {
             _apiResult.emit(Result.Loading)
             try {
                 val apiInterface = ApiClient.client.create(ApiInterface::class.java)
-                val call = apiInterface.loginUser("Login", email, password)
+                val call = apiInterface.loginUser("Login", phone)
                 val response = withContext(Dispatchers.IO) {
                     call.execute().body() as GeneralResponse
                 }

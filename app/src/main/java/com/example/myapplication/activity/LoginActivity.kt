@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toolbar
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
@@ -29,6 +26,7 @@ import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import com.example.myapplication.viewmodel.Result
+import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
 
@@ -40,6 +38,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         viewModel = ViewModelProvider(this)[AppViewModel::class.java]
 
+            val inputLayout = findViewById<TextInputLayout>(R.id.textInputPhone)
+
+
+
+        val forgotBtn =  findViewById<TextView>(R.id.txtForgot)
+        forgotBtn.setOnClickListener{
+            startActivity(Intent(this, ForgotActivity::class.java))
+        }
 
         val buttonSignUp = findViewById<TextView>(R.id.txtSignUP)
         buttonSignUp.setOnClickListener {
@@ -52,19 +58,20 @@ class LoginActivity : AppCompatActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
 
-            val email = findViewById<EditText>(R.id.editTextEmail)
-            val password = findViewById<EditText>(R.id.editTextPassword)
+            val phone = findViewById<EditText>(R.id.editTextPhone)
+
            /* if (BuildConfig.DEBUG) {
                 viewModel.loginUser("numiraaj@gmail.com", "123456")
             } else {*/
-                if (email.text.toString().isEmpty() ||  password.text.toString().isEmpty() ) {
+                if (phone.text.toString().isEmpty() ) {
                     AppUtils.showSnackMessage(
-                        "Please enter Email/Password",
+                        "Please enter Phone Number",
                         findViewById(R.id.btnLogin)
                     )
+                    inputLayout.error = "Please enter Phone Number"
                 } else {
-                    viewModel.loginUser(email.text.toString(), password.text.toString())
-
+                    viewModel.loginUser(phone.text.toString())
+                    inputLayout.error=""
                 }
     // }
         }
@@ -88,6 +95,7 @@ class LoginActivity : AppCompatActivity() {
                                 response.message.toString(),
                                 findViewById(R.id.rootView)
                             )
+                            inputLayout.error = response.message.toString()
                         }
                     }
                     is Result.Error -> {
@@ -100,51 +108,20 @@ class LoginActivity : AppCompatActivity() {
             }
         }
 
+
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
         toolbar.title = ""
-        setSupportActionBar(toolbar)
+        val menuItem  = toolbar.findViewById<LinearLayout>(R.id.menu_item_id)
+        menuItem.setOnClickListener{
+
+            App.languageSwitcher.showChangeLanguageDialog(this) { locale ->
+                App.languageSwitcher = LanguageSwitcher(this,locale)
+            }
+        }
+       // setSupportActionBar(toolbar)
 
 
     }
-
-
-    private fun getUserLogin(email: String, password: String) {
-        var dialog = ProgressDialog.progressDialog(this)
-        val apiInterface = ApiClient.client.create(ApiInterface::class.java)
-
-        dialog.show()
-        val call = apiInterface.loginUser("Login", email, password)
-        call.enqueue(object : Callback<GeneralResponse> {
-            override fun onResponse(
-                call: Call<GeneralResponse>,
-                response: retrofit2.Response<GeneralResponse>
-            ) {
-                dialog.dismiss()
-
-                val res = response.body() as GeneralResponse
-                if (res.status == true) {
-                    finish()
-                    startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-
-                } else {
-
-                    AppUtils.showSnackMessage(res.message.toString(), findViewById(R.id.rootView))
-                }
-
-            }
-
-            override fun onFailure(call: Call<GeneralResponse>, t: Throwable) {
-                dialog.dismiss()
-                AppUtils.writeLogs("Failed Query :(  ${t.toString()}")
-                AppUtils.showSnackMessage(t.toString(), findViewById(R.id.rootView))
-
-            }
-
-        })
-
-
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater

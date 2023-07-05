@@ -27,8 +27,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputName"
-            style="@style/editboxStyle"
-     >
+            style="@style/editboxStyle"  >
 
             <EditText
                 android:id="@+id/editTextFirstName"
@@ -65,17 +64,7 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputPassword"
-            style="@style/editboxStyle"
-           >
-            <EditText
-                android:id="@+id/editTextPassword"
-                style="@style/modifiedEditText"
-                android:hint="@string/login_password_hint"
-                android:inputType="textPassword"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputVillage"
             style="@style/editboxStyle"

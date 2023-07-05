@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
+import com.example.myapplication.databinding.ActivityFeedBinding
+import com.example.myapplication.databinding.ActivitySignupBinding
 import com.example.myapplication.model.GeneralResponse
 import com.example.myapplication.retrofit.ApiClient
 import com.example.myapplication.retrofit.ApiInterface
@@ -17,13 +19,23 @@ import retrofit2.Call
 import retrofit2.Callback
 
 class SignUpActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivitySignupBinding
+
+    val emptySpaceError = "*** Detail Required"
+    val resetError = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
-        val btnSignUp = findViewById<Button>(R.id.btnSignUp)
+
+        binding = ActivitySignupBinding.inflate(layoutInflater)
+
+        setContentView(binding.root)
+
+        val btnSignUp = binding.btnSignUp
+
         btnSignUp.setOnClickListener {
             val email = findViewById<EditText>(R.id.editTextEmail)
-            val password = findViewById<EditText>(R.id.editTextPassword)
+
             val firstName = findViewById<EditText>(R.id.editTextFirstName)
             val phone = findViewById<EditText>(R.id.editTextPhone)
             val village = findViewById<EditText>(R.id.editTextVillage)
@@ -39,34 +51,57 @@ class SignUpActivity : AppCompatActivity() {
             val goat = findViewById<EditText>(R.id.editTextGoat)
             val sheep = findViewById<EditText>(R.id.editTextSheep)
 
+            binding.textInputEmail.error =resetError
+            binding.textInputName.error =resetError
+            binding.textInputVillage.error = resetError
+            binding.textInputMobile.error = resetError
+            binding.textInputDistrict.error = resetError
+            binding.textInputTehsil.error = resetError
+            binding.textInputPin.error = resetError
+            binding.textInputLand.error = resetError
+            binding.textInputState.error = resetError
 
 
-            if (email.text.toString().isEmpty() ||
-                password.text.toString().isEmpty() ||
-                firstName.text.toString().isEmpty() ||
-                village.text.toString().isEmpty() ||
-                phone.text.toString().isEmpty() ||
-                district.text.toString().isEmpty() ||
-
-                tehsil.text.toString().isEmpty() ||
-                pin.text.toString().isEmpty() ||
-                land.text.toString().isEmpty() ||
-                state.text.toString().isEmpty()
-               /* || hybrid.text.toString().isEmpty() ||
-                native.text.toString().isEmpty() ||
-
-                buffalo.text.toString().isEmpty() ||
-                ox.text.toString().isEmpty() ||
-                goat.text.toString().isEmpty() ||
-                sheep.text.toString().isEmpty()*/
-
-
-            ) {
-                AppUtils.showSnackMessage("Please enter all detail", findViewById(R.id.btnSignUp))
-            } else {
+                if (email.text.toString().isEmpty())
+            {
+                binding.textInputEmail.error = emptySpaceError
+            }
+             else if(firstName.text.toString().isEmpty())
+            {
+                binding.textInputName.error = emptySpaceError
+            }
+            else if(village.text.toString().isEmpty())
+            {
+                binding.textInputVillage.error = emptySpaceError
+            }
+            else if(phone.text.toString().isEmpty())
+            {
+                binding.textInputMobile.error = emptySpaceError
+            }
+            else if(district.text.toString().isEmpty())
+            {
+                binding.textInputDistrict.error = emptySpaceError
+            }
+            else if(tehsil.text.toString().isEmpty())
+            {
+                binding.textInputTehsil.error = emptySpaceError
+            }
+            else if(pin.text.toString().isEmpty())
+            {
+                binding.textInputPin.error = emptySpaceError
+            }
+            else if(land.text.toString().isEmpty())
+            {
+                binding.textInputLand.error = emptySpaceError
+            }
+            else if(state.text.toString().isEmpty())
+            {
+                binding.textInputState.error = emptySpaceError
+            }
+            else
+            {
                 setUserSignUp(
                     email.text.toString(),
-                    password.text.toString(),
                     firstName.text.toString(),
                     phone.text.toString(),
                     village.text.toString(),
@@ -91,7 +126,7 @@ class SignUpActivity : AppCompatActivity() {
 
     private fun setUserSignUp(
         email: String,
-        password: String,
+
         firstName: String,
         phone: String,
         village: String,
@@ -114,7 +149,7 @@ class SignUpActivity : AppCompatActivity() {
         val call = apiInterface.signUpUser(
             "SignUp",
             email,
-            password,
+
             firstName,
             phone,
             village,

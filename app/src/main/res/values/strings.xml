@@ -5,6 +5,8 @@
     <string name="login_password_hint">Password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
     <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+
+    <string name="login_forget_hint">Forgot Number?</string>
     <string name="login_first_name_hint">First Name</string>
     <string name="login_last_name_hint">Last Name</string>
     <string name="login_mobile_number_hint">Phone Number</string>

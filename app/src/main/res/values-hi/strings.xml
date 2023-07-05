@@ -26,7 +26,7 @@
     <string name="txt_change_lang">ऐप भाषा चुनें</string>
     <string name="txt_login">लॉग इन करें</string>
     <string name="txt_select_animal">पशु का चयन करें</string>
-
+    <string name="login_forget_hint">नंबर भूल गए?</string>
 
 
     <string name="name">नाम</string>

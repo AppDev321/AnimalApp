@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:focusableInTouchMode="true">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        >
+        <TextView
+            style="@style/logoText" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:orientation="vertical"
+       >
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputName"
+            style="@style/editboxStyle"  >
+
+            <EditText
+                android:id="@+id/editTextFirstName"
+                style="@style/modifiedEditText"
+                android:hint="@string/name"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputEmail"
+            style="@style/editboxStyle"
+           >
+
+            <EditText
+                android:id="@+id/editTextEmail"
+                style="@style/modifiedEditText"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnSignUp"
+            style="@style/loginButton"
+            android:text="Check"
+            android:layout_gravity="right"
+            android:layout_marginTop="@dimen/loginViewsMargin" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtNumber"
+            android:layout_gravity= "center"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize = "@dimen/_25sdp"
+            />
+
+
+
+    </LinearLayout>
+</LinearLayout>
