@@ -53,14 +53,27 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
+<LinearLayout
+    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+    <Button
+        android:id="@+id/btnCancel"
+        style="@style/loginButton"
+        android:text="@string/btnCancel"
+        android:layout_gravity="right"
+      />
         <Button
+            android:layout_marginStart="@dimen/loginViewsMargin"
             android:id="@+id/btnSignUp"
             style="@style/loginButton"
-            android:text="Check"
+            android:text="@string/btnCheck"
             android:layout_gravity="right"
-            android:layout_marginTop="@dimen/loginViewsMargin" />
-
+           />
+</LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtNumber"

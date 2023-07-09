@@ -44,4 +44,8 @@
     <string name="goat">बकरी</string>
     <string name="sheep">मेंढी</string>
 
+
+    <string name="btnCheck">तपासा</string>
+    <string name="forgotErrorMsg">तुमचे नाव नोंदणीकृत नाही. कृपया स्वतःची नोंदणी करून लॉग इन करा.</string>
+
 </resources>

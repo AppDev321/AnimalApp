@@ -56,5 +56,7 @@
     <string name="goat">Goat</string>
     <string name="sheep">Sheep</string>
 
-
+    <string name="btnCheck">Check</string>
+    <string name="btnCancel" translatable="false">Cancel</string>
+    <string name="forgotErrorMsg">Your name is not registered. Please login by registering yourself.</string>
 </resources>

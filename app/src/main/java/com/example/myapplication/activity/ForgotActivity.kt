@@ -62,6 +62,10 @@ class ForgotActivity : AppCompatActivity() {
             }
 
         }
+
+        binding.btnCancel.setOnClickListener{
+            finish()
+        }
     }
 
 
@@ -97,7 +101,8 @@ class ForgotActivity : AppCompatActivity() {
                     binding.txtNumber.text = res.message
                 } else {
 
-                    AppUtils.showSnackMessage(res.message.toString(), findViewById(R.id.btnSignUp))
+                   // AppUtils.showSnackMessage(res.message.toString(), findViewById(R.id.btnSignUp))
+                    binding.textInputEmail.error = resources.getString(R.string.forgotErrorMsg)
                 }
 
             }
@@ -112,9 +117,5 @@ class ForgotActivity : AppCompatActivity() {
         })
 
 
-    }
-
-    fun login(v: View) {
-        finish()
     }
 }

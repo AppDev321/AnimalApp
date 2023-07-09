@@ -45,6 +45,8 @@
     <string name="goat">बकरी</string>
     <string name="sheep">भेड़</string>
 
+    <string name="btnCheck">जांचना</string>
 
+    <string name="forgotErrorMsg">आपका नाम पंजीकृत नहीं है। कृपया स्वयं को पंजीकृत करके लॉगिन करें.</string>
 
 </resources>
