@@ -12,10 +12,17 @@ data class GeneralResponse(
 data class AnimalData(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("animalName") var animalName: String? = null,
+    @SerializedName("hindi") var hindi: String? = null,
+    @SerializedName("marathi") var marathi: String? = null,
     @SerializedName("image") var image: String? = null,
     @SerializedName("video") var video: String? = null
 )
-
+data class LifeStageAnimalData(
+    @SerializedName("id") var id: Int? = null,
+    @SerializedName("name") var animalName: String? = null,
+    @SerializedName("hindi") var hindi: String? = null,
+    @SerializedName("marathi") var marathi: String? = null,
+)
 data class IngredientData(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("name") var name: String? = null,

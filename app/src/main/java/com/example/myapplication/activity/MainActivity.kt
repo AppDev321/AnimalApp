@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
@@ -13,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.App
+import com.example.myapplication.AppLocale
 import com.example.myapplication.R
 import com.example.myapplication.model.AnimalData
+import com.example.myapplication.model.LifeStageAnimalData
 import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.ProgressDialog
 import com.example.myapplication.viewmodel.AppViewModel
@@ -29,9 +29,12 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: AppViewModel
     var listAnimals: List<AnimalData> = arrayListOf()
+    var listLifeStageAnimal: List<LifeStageAnimalData> = arrayListOf()
     lateinit var detailContainer: LinearLayout
 
-    lateinit var dropDownView :TextInputLayout
+    lateinit var dropDownView: TextInputLayout
+    lateinit var dropDownLifeView: TextInputLayout
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,9 +46,8 @@ class MainActivity : AppCompatActivity() {
 
 
         dropDownView = findViewById(R.id.TextInputLayout)
-
+        dropDownLifeView = findViewById(R.id.lifeTextInputLayout)
         detailContainer = findViewById(R.id.continer_detail)
-
 
 
         val dialog = ProgressDialog.progressDialog(this)
@@ -60,22 +62,36 @@ class MainActivity : AppCompatActivity() {
                         val response = result.data
                         if (response.status == true) {
 
-                            val animalDataList = ArrayList<AnimalData>()
-                            for (item in response.data) {
+                            var animalDataList = ArrayList<AnimalData>()
+                            val lifeStageList = ArrayList<LifeStageAnimalData>()
+
+                            for (item in response.data[0]as ArrayList<Any>) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
                                 val animalData = gson.fromJson(json, AnimalData::class.java)
                                 animalDataList.add(animalData)
                             }
+
+                            for (item in response.data[1]as ArrayList<Any>) {
+                                val gson = Gson()
+                                val json = gson.toJson(item)
+                                val lifeDataAnimal = gson.fromJson(json, LifeStageAnimalData::class.java)
+                                lifeStageList.add(lifeDataAnimal)
+                            }
+
+
                             listAnimals = animalDataList
+                            listLifeStageAnimal = lifeStageList
 
                             dropDownView.visibility = View.VISIBLE
+                            dropDownLifeView.visibility = View.VISIBLE
                             showAnimalListing()
-                        }
-
-
-                        else {
-                            AppUtils.showSnackMessage(response.message.toString(), findViewById(R.id.rootView))
+                            showLifeStageListing()
+                        } else {
+                            AppUtils.showSnackMessage(
+                                response.message.toString(),
+                                findViewById(R.id.rootView)
+                            )
                         }
                     }
                     is Result.Error -> {
@@ -92,7 +108,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.fetchFeedCategoryList()
 
 
-
     }
 
     private fun loadAnimalDetails(item: AnimalData) {
@@ -104,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val imageView = findViewById<ImageView>(R.id.img)
-        imageView.visibility=View.INVISIBLE
+        imageView.visibility = View.INVISIBLE
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         progressBar.visibility = View.VISIBLE
 
@@ -144,22 +159,20 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
     }
 
 
-    private fun weightCalculateView()
-    {
+    private fun weightCalculateView() {
 
         val edGirth = findViewById<EditText>(R.id.edGirth)
         edGirth.text.clear()
         val edLength = findViewById<EditText>(R.id.edLength)
         edLength.text.clear()
         val txtWeight = findViewById<TextView>(R.id.txtWeight)
-        txtWeight.text="0 KG"
+        txtWeight.text = "0 KG"
         var weight = 0.0
         val btnCalculateWeight = findViewById<Button>(R.id.btnCheck)
-        btnCalculateWeight.setOnClickListener{
+        btnCalculateWeight.setOnClickListener {
 
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
@@ -170,7 +183,7 @@ class MainActivity : AppCompatActivity() {
             if (girth == null || length == null) {
                 AppUtils.showSnackMessage("Please enter a valid value", detailContainer)
             } else {
-                 weight = viewModel.calculateAnimalWeight(girth, length)
+                weight = viewModel.calculateAnimalWeight(girth, length)
                 if (weight == null) {
                     AppUtils.showSnackMessage("Could not calculate weight", detailContainer)
                 } else {
@@ -182,15 +195,13 @@ class MainActivity : AppCompatActivity() {
 
 
         val btnNutrition = findViewById<Button>(R.id.btnNutrition)
-        btnNutrition.setOnClickListener{
+        btnNutrition.setOnClickListener {
 
-            if(weight > 1) {
+            if (weight > 1) {
                 val intent = Intent(this@MainActivity, NutritionalActivity::class.java)
                 intent.putExtra("weight", txtWeight.text)
                 startActivity(intent)
-            }
-            else
-            {
+            } else {
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
             }
         }
@@ -198,38 +209,60 @@ class MainActivity : AppCompatActivity() {
 
         val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
         btnFeedNutrition.setOnClickListener {
-        val feedData = viewModel._feedDataResponse
-            if(feedData.categoryList.isNotEmpty()) {
+            val feedData = viewModel._feedDataResponse
+            if (feedData.categoryList.isNotEmpty()) {
                 FeedActivity.feedResponseData = feedData
                 startActivity(Intent(this, FeedActivity::class.java))
-            }
-            else
-                AppUtils.showSnackMessage("No Feed Category found",btnFeedNutrition)
+            } else
+                AppUtils.showSnackMessage("No Feed Category found", btnFeedNutrition)
         }
 
     }
 
     private fun showAnimalListing() {
-
-
         val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.AutoCompleteTextview)
-
         val animalNames: ArrayList<String> = arrayListOf()
         for (data in listAnimals) {
-            animalNames.add(data.animalName.toString())
+            animalNames.add(
+                when (App().getCurrentAppLocale()) {
+                    AppLocale.ENG ->
+                        data.animalName.toString()
+                    AppLocale.HINDI ->
+                        data.hindi.toString()
+                    AppLocale.MARATHI ->
+                        data.marathi.toString()
+                }
+            )
         }
-
         val adapter = ArrayAdapter(this, R.layout.dropdown_item, animalNames)
         autoCompleteTextView.setAdapter(adapter)
         autoCompleteTextView.showDropDown()
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
-
             val item = listAnimals[position]
             loadAnimalDetails(item)
         }
-
-
     }
 
-
+    private fun showLifeStageListing() {
+        val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.lifeAutoCompleteTextView)
+        val animalNames: ArrayList<String> = arrayListOf()
+        for (data in listLifeStageAnimal) {
+            animalNames.add(
+                when (App().getCurrentAppLocale()) {
+                    AppLocale.ENG ->
+                        data.animalName.toString()
+                    AppLocale.HINDI ->
+                        data.hindi.toString()
+                    AppLocale.MARATHI ->
+                        data.marathi.toString()
+                }
+            )
+        }
+        val adapter = ArrayAdapter(this, R.layout.dropdown_item, animalNames)
+        autoCompleteTextView.setAdapter(adapter)
+        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+            val item = listLifeStageAnimal[position]
+            //loadAnimalDetails(item)
+        }
+    }
 }

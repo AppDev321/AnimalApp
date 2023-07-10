@@ -20,7 +20,8 @@
         android:id="@+id/rootView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/_10sdp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/TextInputLayout"
@@ -40,8 +41,29 @@
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/lifeTextInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:hint="@string/txt_life_stage_select"
+            android:visibility="gone">
 
-        <LinearLayout
+            <AutoCompleteTextView
+                android:id="@+id/lifeAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <LinearLayout
             android:id="@+id/continer_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -45,4 +45,18 @@ companion object{
         supportedLocales.add(Locale("hi"))
         supportedLocales.add(Locale("mr"))
     }
+
+
+     fun getCurrentAppLocale():AppLocale
+    {
+       return if(App.languageSwitcher.currentLocale.language.equals("hi"))
+        AppLocale.HINDI
+        else if(App.languageSwitcher.currentLocale.language.equals("mr"))
+        AppLocale.MARATHI
+        else
+        AppLocale.ENG
+    }
+}
+enum class AppLocale{
+    ENG,MARATHI,HINDI
 }

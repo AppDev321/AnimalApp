@@ -64,10 +64,10 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.loginUser("numiraaj@gmail.com", "123456")
             } else {*/
                 if (phone.text.toString().isEmpty() ) {
-                    AppUtils.showSnackMessage(
+                   /* AppUtils.showSnackMessage(
                         "Please enter Phone Number",
                         findViewById(R.id.btnLogin)
-                    )
+                    )*/
                     inputLayout.error = "Please enter Phone Number"
                 } else {
                     viewModel.loginUser(phone.text.toString())
@@ -91,11 +91,12 @@ class LoginActivity : AppCompatActivity() {
                         if (response.status == true) {
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
                         } else {
-                            AppUtils.showSnackMessage(
+                           /* AppUtils.showSnackMessage(
                                 response.message.toString(),
                                 findViewById(R.id.rootView)
-                            )
-                            inputLayout.error = response.message.toString()
+                            )*/
+
+                            inputLayout.error = resources.getString(R.string.loginError)//response.message.toString()
                         }
                     }
                     is Result.Error -> {

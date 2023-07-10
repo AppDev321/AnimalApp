@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.myapplication.App
+import com.example.myapplication.AppLocale
 import com.example.myapplication.fragment.FeedFragment
 import com.example.myapplication.model.FeedDataResponse
 
@@ -17,12 +18,15 @@ class CategoryPagerAdapter(private val context: Context, fm: FragmentManager,pri
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return if(App.languageSwitcher.currentLocale.language.equals("hi"))
-        feedData.categoryList[position].hindi
-        else if(App.languageSwitcher.currentLocale.language.equals("mr"))
-            feedData.categoryList[position].marathi
-            else
-            feedData.categoryList[position].name
+        return when(App().getCurrentAppLocale())
+        {
+           AppLocale.ENG->
+               feedData.categoryList[position].name
+            AppLocale.HINDI->
+                feedData.categoryList[position].hindi
+            AppLocale.MARATHI->
+                feedData.categoryList[position].marathi
+        }
     }
 
     override fun getCount(): Int {

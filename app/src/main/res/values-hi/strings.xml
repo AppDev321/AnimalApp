@@ -25,9 +25,9 @@
     <string name="txt_btn_feed_nutrition">पोषण आहार</string>
     <string name="txt_change_lang">ऐप भाषा चुनें</string>
     <string name="txt_login">लॉग इन करें</string>
-    <string name="txt_select_animal">पशु का चयन करें</string>
+    <string name="txt_select_animal">जानवरों के नाम</string>
     <string name="login_forget_hint">नंबर भूल गए?</string>
-
+    <string name="txt_life_stage_select">पशूंच्या आयुष्यातील टप्पे</string>
 
     <string name="name">नाम</string>
     <string name="mobile">मोबाईल नंबर</string>
@@ -48,5 +48,5 @@
     <string name="btnCheck">जांचना</string>
 
     <string name="forgotErrorMsg">आपका नाम पंजीकृत नहीं है। कृपया स्वयं को पंजीकृत करके लॉगिन करें.</string>
-
+    <string name="loginError">आपका फ़ोन नंबर नहीं मिला. कृपया अपना पंजीकरण कराएं.</string>
 </resources>
