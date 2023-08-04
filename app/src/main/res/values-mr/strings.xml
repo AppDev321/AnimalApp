@@ -26,7 +26,7 @@
     <string name="txt_select_animal">पशूंची नावे</string>
     <string name="login_forget_hint">नंबर विसरलात?</string>
     <string name="txt_life_stage_select">जानवरों के जीवन का चरण</string>
-
+    <string name="txt_life_pregnant_stage">Pregnancy Stage</string>
 
 
     <string name="name">नाम</string>
@@ -49,5 +49,5 @@
     <string name="btnCheck">तपासा</string>
     <string name="forgotErrorMsg">तुमचे नाव नोंदणीकृत नाही. कृपया स्वतःची नोंदणी करून लॉग इन करा.</string>
     <string name="loginError">आपला फोन नंबर सापडला नाही. कृपया आपली नोंदणी करा.</string>
-
+    <string name="btn_next">पुढे</string>
 </resources>

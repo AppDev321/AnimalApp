@@ -29,6 +29,9 @@
     <string name="login_forget_hint">नंबर भूल गए?</string>
     <string name="txt_life_stage_select">पशूंच्या आयुष्यातील टप्पे</string>
 
+    <string name="txt_life_pregnant_stage">Pregnancy Stage</string>
+
+
     <string name="name">नाम</string>
     <string name="mobile">मोबाईल नंबर</string>
     <string name="email">ई-मेल</string>
@@ -49,4 +52,6 @@
 
     <string name="forgotErrorMsg">आपका नाम पंजीकृत नहीं है। कृपया स्वयं को पंजीकृत करके लॉगिन करें.</string>
     <string name="loginError">आपका फ़ोन नंबर नहीं मिला. कृपया अपना पंजीकरण कराएं.</string>
+
+    <string name="btn_next">अगला</string>
 </resources>

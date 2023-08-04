@@ -48,6 +48,10 @@
             android:screenOrientation="portrait"
            />
         <activity
+            android:name=".activity.LifeStageActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
             android:name=".activity.NutritionalActivity"
             android:screenOrientation="portrait" />
     </application>

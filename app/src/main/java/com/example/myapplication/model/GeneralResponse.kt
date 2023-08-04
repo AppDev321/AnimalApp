@@ -1,6 +1,8 @@
 package com.example.myapplication.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class GeneralResponse(
     @SerializedName("status") var status: Boolean? = null,
@@ -17,12 +19,13 @@ data class AnimalData(
     @SerializedName("image") var image: String? = null,
     @SerializedName("video") var video: String? = null
 )
+@Parcelize
 data class LifeStageAnimalData(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("name") var animalName: String? = null,
     @SerializedName("hindi") var hindi: String? = null,
     @SerializedName("marathi") var marathi: String? = null,
-)
+): Parcelable
 data class IngredientData(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("name") var name: String? = null,

@@ -41,27 +41,6 @@
                 android:inputType="none" />
 
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lifeTextInputLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginEnd="@dimen/_16sdp"
-            android:hint="@string/txt_life_stage_select"
-            android:visibility="gone">
-
-            <AutoCompleteTextView
-                android:id="@+id/lifeAutoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
             <LinearLayout
             android:id="@+id/continer_detail"
@@ -213,20 +192,13 @@
                 android:gravity="center">
             <Button
 
-                android:id="@+id/btnNutrition"
+                android:id="@+id/btnNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
                 android:layout_gravity="center_horizontal"
-                android:text="@string/txt_btn_food_nutrition" />
-                <Button
+                android:text="@string/btn_next" />
 
-                    android:id="@+id/btnFeedNutrition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/txt_btn_feed_nutrition" />
             </LinearLayout>
         </LinearLayout>
 

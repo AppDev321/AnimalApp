@@ -25,6 +25,11 @@
     <string name="txt_btn_feed_nutrition">Feed Nutrition</string>
     <string name="txt_select_animal">Name of Animals</string>
     <string name="txt_life_stage_select">Life stages of Animal</string>
+    <string name="txt_life_pregnant_stage">Pregnancy Stage</string>
+
+
+
+
     <string name="txt_register">SignUp</string>
     <string name="txt_change_lang">Select App Language</string>
     <string name="txt_eng_lang" translatable="false">English</string>
@@ -61,4 +66,7 @@
     <string name="btnCancel" translatable="false">Cancel</string>
     <string name="forgotErrorMsg">Your name is not registered. Please login by registering yourself.</string>
     <string name="loginError">Your Phone number is not found. Please register yourself.</string>
+
+
+    <string name="btn_next">Next</string>
 </resources>

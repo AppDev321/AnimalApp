@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity() {
 
 
         dropDownView = findViewById(R.id.TextInputLayout)
-        dropDownLifeView = findViewById(R.id.lifeTextInputLayout)
         detailContainer = findViewById(R.id.continer_detail)
 
 
@@ -84,9 +83,9 @@ class MainActivity : AppCompatActivity() {
                             listLifeStageAnimal = lifeStageList
 
                             dropDownView.visibility = View.VISIBLE
-                            dropDownLifeView.visibility = View.VISIBLE
+
                             showAnimalListing()
-                            showLifeStageListing()
+
                         } else {
                             AppUtils.showSnackMessage(
                                 response.message.toString(),
@@ -194,12 +193,12 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val btnNutrition = findViewById<Button>(R.id.btnNutrition)
+        val btnNutrition = findViewById<Button>(R.id.btnNext)
         btnNutrition.setOnClickListener {
 
             if (weight > 1) {
-                val intent = Intent(this@MainActivity, NutritionalActivity::class.java)
-                intent.putExtra("weight", txtWeight.text)
+                val intent = Intent(this@MainActivity,LifeStageActivity::class.java)
+                intent.putParcelableArrayListExtra("lifeStageData", ArrayList(listLifeStageAnimal))
                 startActivity(intent)
             } else {
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
@@ -207,7 +206,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
+     /*   val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
         btnFeedNutrition.setOnClickListener {
             val feedData = viewModel._feedDataResponse
             if (feedData.categoryList.isNotEmpty()) {
@@ -215,7 +214,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(Intent(this, FeedActivity::class.java))
             } else
                 AppUtils.showSnackMessage("No Feed Category found", btnFeedNutrition)
-        }
+        }*/
 
     }
 
@@ -243,26 +242,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showLifeStageListing() {
-        val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.lifeAutoCompleteTextView)
-        val animalNames: ArrayList<String> = arrayListOf()
-        for (data in listLifeStageAnimal) {
-            animalNames.add(
-                when (App().getCurrentAppLocale()) {
-                    AppLocale.ENG ->
-                        data.animalName.toString()
-                    AppLocale.HINDI ->
-                        data.hindi.toString()
-                    AppLocale.MARATHI ->
-                        data.marathi.toString()
-                }
-            )
-        }
-        val adapter = ArrayAdapter(this, R.layout.dropdown_item, animalNames)
-        autoCompleteTextView.setAdapter(adapter)
-        autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
-            val item = listLifeStageAnimal[position]
-            //loadAnimalDetails(item)
-        }
-    }
+
 }
