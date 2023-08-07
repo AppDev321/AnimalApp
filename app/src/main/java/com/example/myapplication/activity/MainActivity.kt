@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: AppViewModel
     var listAnimals: List<AnimalData> = arrayListOf()
     var listLifeStageAnimal: List<LifeStageAnimalData> = arrayListOf()
+    var pregnancyStageAnimal: List<LifeStageAnimalData> = arrayListOf()
     lateinit var detailContainer: LinearLayout
 
     lateinit var dropDownView: TextInputLayout
@@ -61,9 +62,9 @@ class MainActivity : AppCompatActivity() {
                         val response = result.data
                         if (response.status == true) {
 
-                            var animalDataList = ArrayList<AnimalData>()
+                            val animalDataList = ArrayList<AnimalData>()
                             val lifeStageList = ArrayList<LifeStageAnimalData>()
-
+                            val pregnancyStageList = ArrayList<LifeStageAnimalData>()
                             for (item in response.data[0]as ArrayList<Any>) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
@@ -79,8 +80,17 @@ class MainActivity : AppCompatActivity() {
                             }
 
 
+                            for (item in response.data[2]as ArrayList<Any>) {
+                                val gson = Gson()
+                                val json = gson.toJson(item)
+                                val pregnancyStage = gson.fromJson(json, LifeStageAnimalData::class.java)
+                                pregnancyStageList.add(pregnancyStage)
+                            }
+
                             listAnimals = animalDataList
                             listLifeStageAnimal = lifeStageList
+                            pregnancyStageAnimal = pregnancyStageList
+
 
                             dropDownView.visibility = View.VISIBLE
 
@@ -109,12 +119,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun loadAnimalDetails(item: AnimalData) {
+    private fun loadAnimalDetails(item: AnimalData,animalName :String) {
 
 
         detailContainer.visibility = View.VISIBLE
 
-        weightCalculateView()
+        weightCalculateView(animalName)
 
 
         val imageView = findViewById<ImageView>(R.id.img)
@@ -161,7 +171,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun weightCalculateView() {
+    private fun weightCalculateView(animalName :String) {
 
         val edGirth = findViewById<EditText>(R.id.edGirth)
         edGirth.text.clear()
@@ -198,7 +208,10 @@ class MainActivity : AppCompatActivity() {
 
             if (weight > 1) {
                 val intent = Intent(this@MainActivity,LifeStageActivity::class.java)
-                intent.putParcelableArrayListExtra("lifeStageData", ArrayList(listLifeStageAnimal))
+                intent.putExtra(LifeStageActivity.animalName, animalName)
+                intent.putExtra(LifeStageActivity.weight, txtWeight.text)
+                intent.putParcelableArrayListExtra(LifeStageActivity.pregnancyStageData, ArrayList(pregnancyStageAnimal))
+                intent.putParcelableArrayListExtra(LifeStageActivity.lifeStageData, ArrayList(listLifeStageAnimal))
                 startActivity(intent)
             } else {
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
@@ -238,7 +251,7 @@ class MainActivity : AppCompatActivity() {
         autoCompleteTextView.showDropDown()
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val item = listAnimals[position]
-            loadAnimalDetails(item)
+            loadAnimalDetails(item,animalNames[position])
         }
     }
 

@@ -30,6 +30,9 @@
     <string name="txt_life_stage_select">पशूंच्या आयुष्यातील टप्पे</string>
 
     <string name="txt_life_pregnant_stage">Pregnancy Stage</string>
+    <string name="txt_milk_yield">Milk Yield</string>
+    <string name="txt_fat">FAT</string>
+
 
 
     <string name="name">नाम</string>

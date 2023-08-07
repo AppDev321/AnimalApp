@@ -10,6 +10,10 @@
     <string name="login_first_name_hint">First Name</string>
     <string name="login_last_name_hint">Last Name</string>
     <string name="login_mobile_number_hint">Phone Number</string>
+    <string name="txt_milk_yield">Milk Yield</string>
+    <string name="txt_fat">FAT</string>
+
+
     <string name="title_activity_splash_screen" translatable="false">SplashScreen</string>
 
     <string name="activity_weight">Weight Measurement</string>
