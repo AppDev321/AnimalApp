@@ -20,10 +20,10 @@ class LifeStageActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLifeStageBinding
 
     companion object {
-        val lifeStageData = "lifeStageData"
-        val pregnancyStageData = "pregnancyStageData"
-        val weight = "weight"
-        val animalName = "animalName"
+        const val lifeStageData = "lifeStageData"
+        const val pregnancyStageData = "pregnancyStageData"
+        const val weight = "weight"
+        const val animalName = "animalName"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
