@@ -26,9 +26,9 @@
     <string name="txt_select_animal">पशूंची नावे</string>
     <string name="login_forget_hint">नंबर विसरलात?</string>
     <string name="txt_life_stage_select">जानवरों के जीवन का चरण</string>
-    <string name="txt_life_pregnant_stage">Pregnancy Stage</string>
-    <string name="txt_milk_yield">Milk Yield</string>
-    <string name="txt_fat">FAT</string>
+    <string name="txt_life_pregnant_stage">गर्भधारणेचा कालावधी</string>
+    <string name="txt_milk_yield">दूध उत्पन्न (लिटर/दिवस)</string>
+    <string name="txt_fat">फॅट</string>
 
 
 
