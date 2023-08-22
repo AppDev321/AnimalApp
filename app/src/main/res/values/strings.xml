@@ -13,6 +13,9 @@
     <string name="txt_milk_yield">Milk Yield (litre/day)</string>
     <string name="txt_fat">FAT</string>
     <string name="txt_life_pregnant_stage">Pregnancy Duration</string>
+    <string name="txt_avg_daily_gain">Average Daily Gain (g)</string>
+
+
 
     <string name="title_activity_splash_screen" translatable="false">SplashScreen</string>
 

@@ -38,9 +38,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         viewModel = ViewModelProvider(this)[AppViewModel::class.java]
 
-            val inputLayout = findViewById<TextInputLayout>(R.id.textInputPhone)
-
-
+        val inputLayout = findViewById<TextInputLayout>(R.id.textInputPhone)
 
         val forgotBtn =  findViewById<TextView>(R.id.txtForgot)
         forgotBtn.setOnClickListener{

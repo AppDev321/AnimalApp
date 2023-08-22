@@ -6,7 +6,14 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -16,6 +23,7 @@ import com.example.myapplication.R
 import com.example.myapplication.model.AnimalData
 import com.example.myapplication.model.LifeStageAnimalData
 import com.example.myapplication.utils.AppUtils
+import com.example.myapplication.utils.DataManagerUtils
 import com.example.myapplication.utils.ProgressDialog
 import com.example.myapplication.viewmodel.AppViewModel
 import com.example.myapplication.viewmodel.Result
@@ -39,8 +47,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[AppViewModel::class.java]
 
+        viewModel = ViewModelProvider(this)[AppViewModel::class.java]
 
         setContentView(R.layout.activity_main)
 
@@ -57,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                     is Result.Loading -> {
                         dialog.show()
                     }
+
                     is Result.Success -> {
                         dialog.dismiss()
                         val response = result.data
@@ -65,25 +74,27 @@ class MainActivity : AppCompatActivity() {
                             val animalDataList = ArrayList<AnimalData>()
                             val lifeStageList = ArrayList<LifeStageAnimalData>()
                             val pregnancyStageList = ArrayList<LifeStageAnimalData>()
-                            for (item in response.data[0]as ArrayList<Any>) {
+                            for (item in response.data[0] as ArrayList<Any>) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
                                 val animalData = gson.fromJson(json, AnimalData::class.java)
                                 animalDataList.add(animalData)
                             }
 
-                            for (item in response.data[1]as ArrayList<Any>) {
+                            for (item in response.data[1] as ArrayList<Any>) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
-                                val lifeDataAnimal = gson.fromJson(json, LifeStageAnimalData::class.java)
+                                val lifeDataAnimal =
+                                    gson.fromJson(json, LifeStageAnimalData::class.java)
                                 lifeStageList.add(lifeDataAnimal)
                             }
 
 
-                            for (item in response.data[2]as ArrayList<Any>) {
+                            for (item in response.data[2] as ArrayList<Any>) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
-                                val pregnancyStage = gson.fromJson(json, LifeStageAnimalData::class.java)
+                                val pregnancyStage =
+                                    gson.fromJson(json, LifeStageAnimalData::class.java)
                                 pregnancyStageList.add(pregnancyStage)
                             }
 
@@ -103,23 +114,27 @@ class MainActivity : AppCompatActivity() {
                             )
                         }
                     }
+
                     is Result.Error -> {
                         dialog.dismiss()
                         val error = result.exception
                         AppUtils.showSnackMessage(error.toString(), findViewById(R.id.rootView))
                     }
+
                     else -> {}
                 }
             }
         }
 
         viewModel.fetchAnimalList()
-        viewModel.fetchFeedCategoryList()
+        viewModel.fetchFeedCategoryList {
+            DataManagerUtils.feedDataResponse = it
+        }
 
 
     }
 
-    private fun loadAnimalDetails(item: AnimalData,animalName :String) {
+    private fun loadAnimalDetails(item: AnimalData, animalName: String) {
 
 
         detailContainer.visibility = View.VISIBLE
@@ -171,7 +186,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    private fun weightCalculateView(animalName :String) {
+    private fun weightCalculateView(animalName: String) {
 
         val edGirth = findViewById<EditText>(R.id.edGirth)
         edGirth.text.clear()
@@ -207,11 +222,17 @@ class MainActivity : AppCompatActivity() {
         btnNutrition.setOnClickListener {
 
             if (weight > 1) {
-                val intent = Intent(this@MainActivity,LifeStageActivity::class.java)
+                val intent = Intent(this@MainActivity, LifeStageActivity::class.java)
                 intent.putExtra(LifeStageActivity.animalName, animalName)
                 intent.putExtra(LifeStageActivity.weight, txtWeight.text)
-                intent.putParcelableArrayListExtra(LifeStageActivity.pregnancyStageData, ArrayList(pregnancyStageAnimal))
-                intent.putParcelableArrayListExtra(LifeStageActivity.lifeStageData, ArrayList(listLifeStageAnimal))
+                intent.putParcelableArrayListExtra(
+                    LifeStageActivity.pregnancyStageData,
+                    ArrayList(pregnancyStageAnimal)
+                )
+                intent.putParcelableArrayListExtra(
+                    LifeStageActivity.lifeStageData,
+                    ArrayList(listLifeStageAnimal)
+                )
                 startActivity(intent)
             } else {
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
@@ -219,15 +240,15 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-     /*   val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
-        btnFeedNutrition.setOnClickListener {
-            val feedData = viewModel._feedDataResponse
-            if (feedData.categoryList.isNotEmpty()) {
-                FeedActivity.feedResponseData = feedData
-                startActivity(Intent(this, FeedActivity::class.java))
-            } else
-                AppUtils.showSnackMessage("No Feed Category found", btnFeedNutrition)
-        }*/
+        /*   val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
+           btnFeedNutrition.setOnClickListener {
+               val feedData = viewModel._feedDataResponse
+               if (feedData.categoryList.isNotEmpty()) {
+                   FeedActivity.feedResponseData = feedData
+                   startActivity(Intent(this, FeedActivity::class.java))
+               } else
+                   AppUtils.showSnackMessage("No Feed Category found", btnFeedNutrition)
+           }*/
 
     }
 
@@ -239,8 +260,10 @@ class MainActivity : AppCompatActivity() {
                 when (App().getCurrentAppLocale()) {
                     AppLocale.ENG ->
                         data.animalName.toString()
+
                     AppLocale.HINDI ->
                         data.hindi.toString()
+
                     AppLocale.MARATHI ->
                         data.marathi.toString()
                 }
@@ -251,7 +274,7 @@ class MainActivity : AppCompatActivity() {
         autoCompleteTextView.showDropDown()
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
             val item = listAnimals[position]
-            loadAnimalDetails(item,animalNames[position])
+            loadAnimalDetails(item, animalNames[position])
         }
     }
 

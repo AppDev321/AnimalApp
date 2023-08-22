@@ -1,6 +1,8 @@
 package com.example.myapplication.activity
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.App
@@ -14,8 +16,8 @@ import com.example.myapplication.utils.show
 
 
 class LifeStageActivity : AppCompatActivity() {
-   private var listLifeStageAnimal: List<LifeStageAnimalData> = arrayListOf()
-   private var pregnancyStage: List<LifeStageAnimalData> = arrayListOf()
+    private var listLifeStageAnimal: List<LifeStageAnimalData> = arrayListOf()
+    private var pregnancyStage: List<LifeStageAnimalData> = arrayListOf()
 
     private lateinit var binding: ActivityLifeStageBinding
 
@@ -48,6 +50,9 @@ class LifeStageActivity : AppCompatActivity() {
         showPregnancyListing()
         binding.editTextMilk.filters = arrayOf(InputFilterMinMax(1, 30))
         binding.editTextFAT.filters = arrayOf(InputFilterMinMax(1, 100))
+        binding.btnFeed.setOnClickListener{
+            startActivity(Intent(this,FeedActivity::class.java))
+        }
 
     }
 
@@ -72,6 +77,7 @@ class LifeStageActivity : AppCompatActivity() {
 
         }
     }
+
     private fun showLifeStageListing() {
         val autoCompleteTextView = binding.AutoCompleteTextview
         val animalNames: ArrayList<String> = arrayListOf()
@@ -90,12 +96,15 @@ class LifeStageActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, R.layout.dropdown_item, animalNames)
         autoCompleteTextView.setAdapter(adapter)
         autoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
-            if (listLifeStageAnimal[position].animalName.toString().lowercase()
-                    .contains("pregnant")
-            )
-                binding.textInputPreLifeStage.show()
-            else
-                binding.textInputPreLifeStage.hide()
+            val animalName = listLifeStageAnimal[position].animalName.toString().lowercase()
+            binding.textInputPreLifeStage.visibility = if (animalName.contains("pregnant")) View.VISIBLE else View.GONE
+            if (animalName.contains("heifer")) {
+                binding.textInputMilk.hide()
+                binding.textInputFAT.hide()
+            } else {
+                binding.textInputMilk.show()
+                binding.textInputFAT.show()
+            }
         }
     }
 }

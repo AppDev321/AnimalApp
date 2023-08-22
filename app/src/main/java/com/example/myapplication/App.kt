@@ -2,12 +2,14 @@ package com.example.myapplication
 
 import android.app.Application
 import com.example.myapplication.rosetta.LanguageSwitcher
+import com.example.myapplication.viewmodel.AppViewModel
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
 import java.util.*
 
 
 class App:Application() {
+
 companion object{
     private lateinit var firstLaunchLocale: Locale
     private lateinit var supportedLocales: HashSet<Locale>

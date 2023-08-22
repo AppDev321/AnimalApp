@@ -28,6 +28,7 @@
     <string name="txt_select_animal">जानवरों के नाम</string>
     <string name="login_forget_hint">नंबर भूल गए?</string>
     <string name="txt_life_stage_select">पशूंच्या आयुष्यातील टप्पे</string>
+    <string name="txt_avg_daily_gain">दररोज शरीराची वाढ (ग्रा)</string>
 
     <string name="txt_life_pregnant_stage">गर्भावस्था की अवधि</string>
     <string name="txt_milk_yield">दूध की उपज (लीटर/दिन)</string>

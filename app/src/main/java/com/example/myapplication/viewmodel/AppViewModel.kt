@@ -96,7 +96,7 @@ class AppViewModel : ViewModel() {
         return ((girth * girth * length) / 300)*0.454
     }
 
-    fun fetchFeedCategoryList(wantResponse:Boolean= false) {
+    fun fetchFeedCategoryList(wantResponse:Boolean= false,dataList : (FeedDataResponse)->Unit) {
         viewModelScope.launch {
 
             if(wantResponse)
@@ -113,7 +113,7 @@ class AppViewModel : ViewModel() {
                 _feedCatList.addAll(data.categoryList)
                 _feedSubCatList.addAll(data.subCategoryList)
                 _feedItemsList.addAll(data.feetItemsList)
-
+                dataList(data)
                 if(wantResponse)
                     _apiResult.emit(Result.Success(response))
             } catch (e: Exception) {
