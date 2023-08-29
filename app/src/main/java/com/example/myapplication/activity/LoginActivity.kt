@@ -58,16 +58,16 @@ class LoginActivity : AppCompatActivity() {
 
             val phone = findViewById<EditText>(R.id.editTextPhone)
 
-            if (BuildConfig.DEBUG) {
+          /*  if (BuildConfig.DEBUG) {
                   viewModel.loginUser("03125149837")
-            } else {
+            } else {*/
                 if (phone.text.toString().isEmpty() ) {
                     inputLayout.error = "Please enter Phone Number"
                 } else {
                     viewModel.loginUser(phone.text.toString())
                     inputLayout.error=""
                 }
-     }
+    // }
         }
 
 
