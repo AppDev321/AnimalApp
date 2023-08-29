@@ -2,13 +2,17 @@ package com.example.myapplication.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.App
 import com.example.myapplication.databinding.RowFeedSubCategoryItemBinding
 import com.example.myapplication.model.FeedItem
 import com.example.myapplication.model.FeedSubCategory
 
-class SubCategoryAdapter(val list: List<FeedSubCategory>,val itemlist : List<FeedItem>) : RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder>() {
+class SubCategoryAdapter(
+    val list: List<FeedSubCategory>,
+    private val itemlist : List<FeedItem>,
+    private val feedItemClickListener: FeedItemListener) : RecyclerView.Adapter<SubCategoryAdapter.MyViewHolder>() {
 
     inner class MyViewHolder(val viewDataBinding: RowFeedSubCategoryItemBinding) :
         RecyclerView.ViewHolder(viewDataBinding.root)
@@ -29,15 +33,11 @@ class SubCategoryAdapter(val list: List<FeedSubCategory>,val itemlist : List<Fee
             else
                 list[position].name
 
-
-
-
-
         holder.viewDataBinding.feedItemRecycler.apply {
            val listItems = itemlist.filter { item ->
                item.subCatID == list[position].id
         }
-            adapter= FeedItemAdatper(listItems)
+            adapter= FeedItemAdapter(listItems,feedItemClickListener)
         }
 
     }

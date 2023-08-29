@@ -118,6 +118,7 @@ class MainActivity : AppCompatActivity() {
                     is Result.Error -> {
                         dialog.dismiss()
                         val error = result.exception
+                        AppUtils.writeLogs(error.toString())
                         AppUtils.showSnackMessage(error.toString(), findViewById(R.id.rootView))
                     }
 

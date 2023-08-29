@@ -10,7 +10,11 @@ import com.example.myapplication.AppLocale
 import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityLifeStageBinding
 import com.example.myapplication.model.LifeStageAnimalData
+import com.example.myapplication.utils.AppUtils
+import com.example.myapplication.utils.DataManagerUtils
 import com.example.myapplication.utils.InputFilterMinMax
+import com.example.myapplication.utils.LifeStageActivityData
+import com.example.myapplication.utils.getSafeString
 import com.example.myapplication.utils.hide
 import com.example.myapplication.utils.show
 
@@ -50,7 +54,25 @@ class LifeStageActivity : AppCompatActivity() {
         showPregnancyListing()
         binding.editTextMilk.filters = arrayOf(InputFilterMinMax(1, 30))
         binding.editTextFAT.filters = arrayOf(InputFilterMinMax(1, 100))
+        binding.editAvgGain.filters = arrayOf(InputFilterMinMax(1, 1000))
         binding.btnFeed.setOnClickListener{
+
+            val avgWeight = Integer.parseInt(binding.editAvgGain.text.toString().getSafeString())
+            val fat = Integer.parseInt(binding.editTextFAT.text.toString().getSafeString())
+            val milkYield = Integer.parseInt(binding.editTextMilk.text.toString().getSafeString())
+
+
+            val data = LifeStageActivityData(
+                animalName  = animalName!!,
+                animalWeight = weight!!,
+                avgDailyWeightGain = avgWeight,
+                fat = fat,
+                milkYield =  milkYield,
+                lifeStage = binding.AutoCompleteTextview.text.toString(),
+                pregnancyDuration = binding.txtPreLifeStage.text.toString()
+            )
+            DataManagerUtils.lifeStageActivityData = data
+            DataManagerUtils.selectedFeetItem.clear()
             startActivity(Intent(this,FeedActivity::class.java))
         }
 

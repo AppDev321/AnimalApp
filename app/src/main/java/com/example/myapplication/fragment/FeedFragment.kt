@@ -7,15 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.activity.FeedActivity
+import com.example.myapplication.adapter.FeedItemListener
 import com.example.myapplication.adapter.SubCategoryAdapter
 import com.example.myapplication.databinding.FragmentFeedBinding
+import com.example.myapplication.model.FeedItem
+import com.example.myapplication.utils.AppUtils
+import com.example.myapplication.utils.DataManagerUtils
 
 /**
  * A placeholder fragment containing a simple view.
  */
-class FeedFragment : Fragment() {
+class FeedFragment : Fragment() ,FeedItemListener {
     private var _binding: FragmentFeedBinding? = null
     private val binding get() = _binding!!
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,9 +41,9 @@ class FeedFragment : Fragment() {
         val subCatlist = feedData.subCategoryList.filter{
             it.catID == categoryID
         }
-binding.mainRecycler.apply {
+            binding.mainRecycler.apply {
             layoutManager = LinearLayoutManager(requireActivity())
-            adapter = SubCategoryAdapter(subCatlist,feedData.feetItemsList)
+            adapter = SubCategoryAdapter(subCatlist,feedData.feetItemsList,this@FeedFragment)
         }
 
 
@@ -59,5 +65,13 @@ binding.mainRecycler.apply {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun feedItemClicked(checked: Boolean, item: FeedItem) {
+        if(checked)
+            DataManagerUtils.selectedFeetItem.add(item)
+        else
+            DataManagerUtils.selectedFeetItem.remove(item)
+
     }
 }

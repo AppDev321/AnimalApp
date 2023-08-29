@@ -24,4 +24,5 @@ fun String.removeEmojis(): String {
 
 
 fun String.areDigitsOnly() = matches(Regex("[0-9]+"))
+fun String?.getSafeString(): String = if (this.isNullOrEmpty()) "0" else this ?: "0"
 
