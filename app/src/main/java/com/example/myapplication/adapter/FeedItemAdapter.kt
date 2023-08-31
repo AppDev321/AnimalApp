@@ -6,12 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.App
 import com.example.myapplication.databinding.RowFeedItemBinding
 import com.example.myapplication.model.FeedItem
+import com.example.myapplication.utils.AppUtils
+import com.example.myapplication.utils.DataManagerUtils
 import com.example.myapplication.utils.hide
 import com.example.myapplication.utils.show
 
 class FeedItemAdapter(
     private val list: List<FeedItem>,
-    val feedItemClickListener: FeedItemListener,
+    private val feedItemClickListener: FeedItemListener,
     val showCheck:Boolean= true,
     val showCPCDetails:Boolean = false
 ) :
@@ -39,8 +41,11 @@ class FeedItemAdapter(
             else
                 list[position].name
 
-    if(showCheck)
-        holder.viewDataBinding.checkbox.show()
+            if(showCheck) {
+                    holder.viewDataBinding.checkbox.show()
+                holder.viewDataBinding.checkbox.isChecked =
+                    DataManagerUtils.selectedFeetItem.contains(list[position])
+            }
         else  holder.viewDataBinding.checkbox.hide()
 
         if(showCPCDetails)
