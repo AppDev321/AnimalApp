@@ -44,12 +44,10 @@ class SignUpActivity : AppCompatActivity() {
             val state = findViewById<EditText>(R.id.editTextState)
             val pin = findViewById<EditText>(R.id.editTextPin)
             val land = findViewById<EditText>(R.id.editTextLand)
-            val hybrid = findViewById<EditText>(R.id.editTextHybrid)
-            val native = findViewById<EditText>(R.id.editTextNative)
+            val crossBred = findViewById<EditText>(R.id.editTextCrossBred)
+            val deshiCow = findViewById<EditText>(R.id.editTextDeshiCow)
             val buffalo = findViewById<EditText>(R.id.editTextBuffalow)
-            val ox = findViewById<EditText>(R.id.editTextOx)
             val goat = findViewById<EditText>(R.id.editTextGoat)
-            val sheep = findViewById<EditText>(R.id.editTextSheep)
 
             binding.textInputEmail.error =resetError
             binding.textInputName.error =resetError
@@ -110,12 +108,10 @@ class SignUpActivity : AppCompatActivity() {
                     tehsil.text.toString(),
                     pin.text.toString(),
                     land.text.toString(),
-                    hybrid.text.toString(),
-                    native.text.toString(),
+                    crossBred.text.toString(),
+                    deshiCow.text.toString(),
                     buffalo.text.toString(),
                     goat.text.toString(),
-                    ox.text.toString(),
-                    sheep.text.toString()
 
                 )
             }
@@ -135,12 +131,11 @@ class SignUpActivity : AppCompatActivity() {
         tehsil: String,
         pin: String,
         land: String,
-        hybrid: String,
-        native: String,
+        crossBred: String,
+        deshiCow: String,
         buffalow: String,
         goat: String,
-        ox: String,
-        sheep: String
+
     ) {
         var dialog = ProgressDialog.progressDialog(this)
         val apiInterface = ApiClient.client.create(ApiInterface::class.java)
@@ -158,12 +153,10 @@ class SignUpActivity : AppCompatActivity() {
             tehsil,
             pin,
             land,
-            hybrid,
-            native,
+            crossBred,
+            deshiCow,
             buffalow,
             goat,
-            ox,
-            sheep
         )
         call.enqueue(object : Callback<GeneralResponse> {
             override fun onResponse(

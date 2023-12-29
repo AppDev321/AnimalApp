@@ -34,12 +34,10 @@ interface ApiInterface {
         @Field("vTehsil") tehsil:String,
         @Field("vPin") pin:String,
         @Field("vLand") land:String,
-        @Field("vHybrid") hybrid:String,
-        @Field("vNative") native:String,
+        @Field("vCrossBred") crossBred:String,
+        @Field("vDeshiCow") deshiCow:String,
         @Field("vBuffalow") buffalow:String,
         @Field("vGoat") goat:String,
-        @Field("vOx") ox:String,
-        @Field("vSheep") sheep:String,
 
         ): Call<GeneralResponse>
 

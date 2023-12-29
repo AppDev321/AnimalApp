@@ -6,6 +6,11 @@
     <string name="login_password_hint">ईमेल पासवर्ड</string>
     <string name="signup_login_hint">आधीपासूनच एक खाते आहे? साइन इन करा</string>
     <string name="login_signup_hint">तुमच्याकडे खाता नाही का ? साइन अप करा</string>
+    <string name="txt_discalimer">अस्वीकरण</string>
+
+
+
+
     <string name="login_first_name_hint">पहिले नाव</string>
     <string name="login_last_name_hint">आडनाव</string>
     <string name="login_mobile_number_hint">फोन नंबर</string>
@@ -23,6 +28,11 @@
     <string name="txt_btn_feed_nutrition">फीड पोषण</string>
     <string name="txt_change_lang">अॅप भाषा निवडा</string>
     <string name="txt_login">लॉगिन करा</string>
+
+
+
+
+
     <string name="txt_select_animal">पशूंची नावे</string>
     <string name="login_forget_hint">नंबर विसरलात?</string>
     <string name="txt_life_stage_select">जानवरों के जीवन का चरण</string>
@@ -42,12 +52,11 @@
     <string name="state">राज्य</string>
     <string name="pin">पिन कोड</string>
     <string name="land">जमीन (एकरमध्ये)</string>
-    <string name="hybrid">संकर गाय</string>
+    <string name="cross_bread">क्रॉस-ब्रेड</string>
     <string name="cow">देशी गाय</string>
     <string name="buffalo">म्हैस</string>
-    <string name="ox">बैल</string>
     <string name="goat">बकरी</string>
-    <string name="sheep">मेंढी</string>
+
 
 
     <string name="btnCheck">तपासा</string>

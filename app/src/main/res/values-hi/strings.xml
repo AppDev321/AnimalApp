@@ -8,6 +8,11 @@
     <string name="login_password_hint">पासवर्ड</string>
     <string name="signup_login_hint">क्या आपके पास पहले से एक खाता मौजूद है? दाखिल करना</string>
     <string name="login_signup_hint">क्या आपके पास खाता नहीं है? साइन अप करें</string>
+    <string name="txt_discalimer">अस्वीकरण</string>
+
+
+
+
     <string name="login_first_name_hint">पहला नाम</string>
     <string name="login_last_name_hint">उपनाम</string>
     <string name="login_mobile_number_hint">फ़ोन नंबर</string>
@@ -45,12 +50,11 @@
     <string name="state">राज्य</string>
     <string name="pin">पिन कोड</string>
     <string name="land">भूमि (एकड़ में)</string>
-    <string name="hybrid">संकर गाय</string>
+    <string name="cross_bread">पार नस्ल</string>
     <string name="cow">देशी गाय</string>
     <string name="buffalo">भैंस</string>
-    <string name="ox">बैल</string>
     <string name="goat">बकरी</string>
-    <string name="sheep">भेड़</string>
+
 
     <string name="btnCheck">जांचना</string>
 

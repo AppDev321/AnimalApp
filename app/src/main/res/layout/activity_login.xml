@@ -93,6 +93,16 @@
             android:textColor="@color/primaryTextColor"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/txtDisclaimer"
+            style="@style/parent"
+            android:padding="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="@string/txt_discalimer"
+            android:textAlignment="textEnd"
+            android:textColor="@color/primaryTextColor"
+            android:textStyle="bold" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

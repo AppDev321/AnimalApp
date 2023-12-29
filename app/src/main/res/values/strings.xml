@@ -5,6 +5,8 @@
     <string name="login_password_hint">Password</string>
     <string name="signup_login_hint">Already have an account? Sign In</string>
     <string name="login_signup_hint">Don\'t have an account? Sign Up</string>
+    <string name="txt_discalimer">Disclaimer</string>
+
 
     <string name="login_forget_hint">Forgot Number?</string>
     <string name="login_first_name_hint">First Name</string>
@@ -62,12 +64,11 @@
     <string name="state">State</string>
     <string name="pin">Pin code</string>
     <string name="land">Land(in acres)</string>
-    <string name="hybrid">Hybrid Cow</string>
-    <string name="cow">Native Cow</string>
+    <string name="cross_bread">Cross-Bred</string>
+    <string name="cow">Deshi Cow</string>
     <string name="buffalo">Buffalo</string>
-    <string name="ox">Ox</string>
     <string name="goat">Goat</string>
-    <string name="sheep">Sheep</string>
+
 
     <string name="btnCheck">Check</string>
     <string name="btnCancel" translatable="false">Cancel</string>
@@ -76,4 +77,26 @@
 
 
     <string name="btn_next">Next</string>
+
+    <string name="disclaimer_data">
+        <![CDATA[<font color=#FF0000>The information contained in this app is
+for general purposes only. We make no
+representations or warranties of any kind,
+express or implied, about the completeness,
+accuracy, reliability, suitability or availability
+with respect to the information and App for
+any purpose. Usage of such information and
+App is strictly at your own risk. No event will
+we be liable for any loss or damage.</font>
+<br><br><font color=#0000FF>Developed by Dr. U B Angadi, CABIN,
+ICAR-IASRI, New Delhi with help of animal
+nutrition scientists from ICAR-NIANP,
+Bangalore, India and ILRI, India and support
+from Government of Odhisa to promote the
+app to farmers
+<br>
+Suggestions & comments email to
+<br>
+</b>ub.angadi@icar.gov.in</b></font><br>]]>
+</string>
 </resources>

@@ -8,26 +8,20 @@ import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.App
-import com.example.myapplication.BuildConfig
 import com.example.myapplication.R
-import com.example.myapplication.model.GeneralResponse
-import com.example.myapplication.retrofit.ApiClient
-import com.example.myapplication.retrofit.ApiInterface
 import com.example.myapplication.rosetta.LanguageSwitcher
 import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.ProgressDialog
+import com.example.myapplication.utils.getHtmlSpannedText
 import com.example.myapplication.viewmodel.AppViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
 import com.example.myapplication.viewmodel.Result
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
-import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -48,6 +42,11 @@ class LoginActivity : AppCompatActivity() {
         val buttonSignUp = findViewById<TextView>(R.id.txtSignUP)
         buttonSignUp.setOnClickListener {
             startActivity(Intent(this, SignUpActivity::class.java))
+        }
+
+        val buttonDisclaimer = findViewById<TextView>(R.id.txtDisclaimer)
+        buttonDisclaimer.setOnClickListener {
+            showDisclaimerDialog()
         }
 
         val loginButton = findViewById<Button>(R.id.btnLogin)
@@ -136,6 +135,16 @@ class LoginActivity : AppCompatActivity() {
         }
 
         return super.onOptionsItemSelected(item)
+    }
+
+
+    private fun showDisclaimerDialog() {
+        val mDialog = MaterialAlertDialogBuilder(this)
+        mDialog.setPositiveButton("Close") { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }.setMessage(getString(R.string.disclaimer_data).getHtmlSpannedText())
+            .setTitle(getString(R.string.txt_discalimer)).create()
+        mDialog.show()
     }
 
 }

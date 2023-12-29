@@ -137,32 +137,29 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputHybrid"
+            android:id="@+id/textInputCrossBred"
             style="@style/editboxStyle"
             >
             <EditText
-                android:id="@+id/editTextHybrid"
+                android:id="@+id/editTextCrossBred"
                 style="@style/modifiedEditText"
-                android:hint="@string/hybrid"
+                android:hint="@string/cross_bread"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputNativ"
+            android:id="@+id/textInputDeshiCow"
             style="@style/editboxStyle"
             >
             <EditText
-                android:id="@+id/editTextNative"
+                android:id="@+id/editTextDeshiCow"
                 style="@style/modifiedEditText"
                 android:hint="@string/cow"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputBuffalow"
@@ -172,17 +169,6 @@
                 android:id="@+id/editTextBuffalow"
                 style="@style/modifiedEditText"
                 android:hint="@string/buffalo"
-                android:inputType="text"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputOx"
-            style="@style/editboxStyle"
-            >
-            <EditText
-                android:id="@+id/editTextOx"
-                style="@style/modifiedEditText"
-                android:hint="@string/ox"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -200,18 +186,7 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputSheep"
-            style="@style/editboxStyle"
-            >
-            <EditText
-                android:id="@+id/editTextSheep"
-                style="@style/modifiedEditText"
-                android:hint="@string/sheep"
-                android:inputType="text"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
-        <Button
+         <Button
             android:id="@+id/btnSignUp"
             style="@style/loginButton"
             android:text="@string/txt_register"
