@@ -43,10 +43,10 @@ class LifeStageActivity : AppCompatActivity() {
         pregnancyStage =
             intent.extras?.getParcelableArrayList<LifeStageAnimalData>(pregnancyStageData) as List<LifeStageAnimalData>
 
-        val weight = intent.extras?.getString(weight)
+        val weight = intent.extras?.getDouble(weight) ?: 0.0
         val animalName = intent.extras?.getString(animalName)
         binding.txtAnimalName.text = animalName
-        binding.txtWeigh.text = weight
+        binding.txtWeigh.text = "$weight KG"
 
 
         binding.textInputPreLifeStage.hide()

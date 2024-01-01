@@ -202,8 +202,8 @@ class MainActivity : AppCompatActivity() {
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
 
-            val girth = edGirth.text.toString().toIntOrNull()
-            val length = edLength.text.toString().toIntOrNull()
+            val girth = edGirth.text.toString().toDoubleOrNull()
+            val length = edLength.text.toString().toDoubleOrNull()
 
             if (girth == null || length == null) {
                 AppUtils.showSnackMessage("Please enter a valid value", detailContainer)
@@ -225,7 +225,7 @@ class MainActivity : AppCompatActivity() {
             if (weight > 1) {
                 val intent = Intent(this@MainActivity, LifeStageActivity::class.java)
                 intent.putExtra(LifeStageActivity.animalName, animalName)
-                intent.putExtra(LifeStageActivity.weight, txtWeight.text)
+                intent.putExtra(LifeStageActivity.weight, weight)
                 intent.putParcelableArrayListExtra(
                     LifeStageActivity.pregnancyStageData,
                     ArrayList(pregnancyStageAnimal)

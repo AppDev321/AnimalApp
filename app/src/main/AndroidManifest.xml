@@ -54,6 +54,11 @@
         <activity
             android:name=".activity.NutritionalActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".activity.QuantityCalculateActivity"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

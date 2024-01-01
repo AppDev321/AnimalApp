@@ -32,6 +32,12 @@ class AppViewModel : ViewModel() {
      var _feedDataResponse = FeedDataResponse()
      val getFeedDataResposne = _feedDataResponse
 
+
+
+
+
+
+
     fun showMessage(message: String) {
         viewModelScope.launch {
             _snackMessage.emit(message)
@@ -92,8 +98,8 @@ class AppViewModel : ViewModel() {
     }
 
 
-     fun calculateAnimalWeight(girth: Int, length: Int): Double {
-        return ((girth * girth * length) / 300)*0.454
+     fun calculateAnimalWeight(girth: Double, length: Double): Double {
+        return  String.format("%.2f", ((girth * girth * length) / 300)*0.454).toDouble()
     }
 
     fun fetchFeedCategoryList(wantResponse:Boolean= false,dataList : (FeedDataResponse)->Unit) {

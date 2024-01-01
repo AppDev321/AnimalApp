@@ -1,5 +1,6 @@
 package com.example.myapplication.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
 import com.example.myapplication.activity.FeedActivity
+import com.example.myapplication.activity.QuantityCalculateActivity
 import com.example.myapplication.adapter.FeedItemAdapter
 import com.example.myapplication.adapter.FeedItemListener
 import com.example.myapplication.adapter.SubCategoryAdapter
@@ -40,7 +42,7 @@ class FeedCalculateFragment : Fragment(), FeedItemListener {
 
        val animalDetailData = DataManagerUtils.lifeStageActivityData
         showAnimalDetailData(getString(R.string.name),animalDetailData.animalName)
-        showAnimalDetailData(getString(R.string.txt_weight),animalDetailData.animalWeight)
+        showAnimalDetailData(getString(R.string.txt_weight),"${animalDetailData.animalWeight} KG")
         showAnimalDetailData(getString(R.string.txt_avg_daily_gain),""+animalDetailData.avgDailyWeightGain)
         showAnimalDetailData(getString(R.string.txt_life_stage_select),""+animalDetailData.lifeStage)
         showAnimalDetailData(getString(R.string.txt_life_pregnant_stage),""+animalDetailData.pregnancyDuration)
@@ -52,6 +54,10 @@ class FeedCalculateFragment : Fragment(), FeedItemListener {
            layoutManager = LinearLayoutManager(requireActivity())
             adapter = FeedItemAdapter(DataManagerUtils.selectedFeetItem,this@FeedCalculateFragment,showCheck = false,
                 showCPCDetails = true)
+        }
+
+        binding.btnCalculate.setOnClickListener {
+            startActivity(Intent(activity,QuantityCalculateActivity::class.java))
         }
 
 
