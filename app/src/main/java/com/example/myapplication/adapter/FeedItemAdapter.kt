@@ -53,9 +53,10 @@ class FeedItemAdapter(
         else
             holder.viewDataBinding.itemDetailContainer.hide()
 
-        holder.viewDataBinding.txtDm.text = list[position].dm
-        holder.viewDataBinding.txtCp.text = list[position].cp
-        holder.viewDataBinding.txtTdn.text = list[position].tdn
+        holder.viewDataBinding.txtDm.text = ""+list[position].dm
+        holder.viewDataBinding.txtDcp.text = ""+list[position].dcp
+        holder.viewDataBinding.txtCp.text = ""+list[position].cp
+        holder.viewDataBinding.txtTdn.text = ""+ list[position].tdn
 
         holder.viewDataBinding.checkbox.setOnCheckedChangeListener { buttonView, isChecked ->
             feedItemClickListener.feedItemClicked(isChecked,list[position])

@@ -1,5 +1,6 @@
 package com.example.myapplication.utils
 
+import android.util.Log
 import com.example.myapplication.model.FeedDataResponse
 import com.example.myapplication.model.FeedItem
 
@@ -67,13 +68,67 @@ class LifeStageActivityData(
         return greenRough.partOf(1, 4)
     }
 
+    fun getDMValueBySelectedItem(item: FeedItem): Double {
+        return when (item.catID) {
+            3 -> dryRough
+            4 -> legumeGreenRough
+            5 -> nonLegumeGreenRough
+            else -> 1.0
+        }
+    }
+
+    fun getSameCatSelectedItem(items: List<FeedItem>, selectedItem: FeedItem): Int =
+        items.count { it.catID == selectedItem.catID }
+
+    fun getItemDMCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
+
+       return getDMValueBySelectedItem(selectedItem) / getSameCatSelectedItem(items, selectedItem)
+
+    }
+    fun getItemFooderCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
+        val selectedItemDMCalc = getItemDMCalculation(items,selectedItem)
+         return with(selectedItem) {
+            Log.e("Cal"," DM = ${dm}")
+            val dmValue = dm
+
+            val fooderCalc = (100 * selectedItemDMCalc) /dmValue
+            Log.e("Cal"," 100 * ${selectedItemDMCalc}/${dmValue} = ${ fooderCalc.roundTo2DecimalPlaces()}")
+            fooderCalc.roundTo2DecimalPlaces()
+        }
+    }
+
+    fun getItemDCPCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
+        val selectedItemFoodCalc = getItemFooderCalculation(items,selectedItem)
+        return with(selectedItem) {
+            Log.e("Cal"," DCP = $dcp")
+            val cpVaue = dcp
+            val fooddcp = (cpVaue * selectedItemFoodCalc) /100
+            Log.e("Cal"," ${cpVaue} * ${selectedItemFoodCalc}/${100} = ${ fooddcp.roundTo2DecimalPlaces()}")
+            fooddcp.roundTo2DecimalPlaces()
+        }
+    }
+
+    fun getItemTDNCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
+        val selectedItemDMCalc = getItemDMCalculation(items,selectedItem)
+        return with(selectedItem) {
+            Log.e("Cal"," TDN = $tdn")
+            val tdnValue = tdn
+            val fooddcp = (tdnValue * selectedItemDMCalc) /100
+            Log.e("Cal"," ${tdnValue} * ${selectedItemDMCalc}/${100} = ${ fooddcp.roundTo2DecimalPlaces()}")
+            fooddcp.roundTo2DecimalPlaces()
+        }
+    }
+
 }
 
 
 infix fun Double.percentOf(value: Double): Double {
-    return String.format("%.2f", this * (value / 100)).toDouble()
+    return (this * (value / 100)).roundTo2DecimalPlaces()
+}
+fun Double.roundTo2DecimalPlaces(): Double {
+    return "%.2f".format(this).toDouble()
 }
 
-fun Double.partOf(numerator: Int,denominator:Int): Double {
-    return  String.format("%.2f", this * numerator / denominator).toDouble()
+fun Double.partOf(numerator: Int, denominator: Int): Double {
+    return ( this * numerator / denominator).roundTo2DecimalPlaces()
 }

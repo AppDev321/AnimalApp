@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.activity.FeedActivity
+import com.example.myapplication.adapter.FeedItemAdapter
 import com.example.myapplication.adapter.FeedItemListener
 import com.example.myapplication.adapter.SubCategoryAdapter
 import com.example.myapplication.databinding.FragmentFeedBinding
@@ -38,12 +39,14 @@ class FeedFragment : Fragment() ,FeedItemListener {
 
         val feedData = FeedActivity.feedResponseData
 
-        val subCatlist = feedData.subCategoryList.filter{
+        val subCatlist = feedData.feetItemsList.filter{
             it.catID == categoryID
         }
             binding.mainRecycler.apply {
             layoutManager = LinearLayoutManager(requireActivity())
-            adapter = SubCategoryAdapter(subCatlist,feedData.feetItemsList,this@FeedFragment)
+            //adapter = SubCategoryAdapter(subCatlist,feedData.feetItemsList,this@FeedFragment)
+             adapter= FeedItemAdapter(subCatlist,this@FeedFragment)
+
         }
 
 

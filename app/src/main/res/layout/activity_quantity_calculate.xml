@@ -15,10 +15,13 @@
         <TextView
             style="@style/logoText" />
     </androidx.appcompat.widget.Toolbar>
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtCalculation"/>
-
+</ScrollView>
 </LinearLayout>

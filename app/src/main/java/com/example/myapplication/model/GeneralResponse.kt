@@ -63,7 +63,8 @@ data class FeedItem(
     @SerializedName("eng") var name: String? = null,
     @SerializedName("hindi") var hindi: String? = null,
     @SerializedName("marathi") var marathi: String? = null,
-    @SerializedName("dm") var dm: String? = null,
-    @SerializedName("tdn") var tdn: String? = null,
-    @SerializedName("cp") var cp: String? = null,
+    @SerializedName("dm") var dm: Double = 0.0,
+    @SerializedName("dcp") var dcp: Double = 0.0,
+    @SerializedName("tdn") var tdn: Double = 0.0,
+    @SerializedName("cp") var cp: Double = 0.0,
 )
