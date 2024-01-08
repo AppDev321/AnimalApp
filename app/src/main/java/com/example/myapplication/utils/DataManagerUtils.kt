@@ -73,6 +73,7 @@ class LifeStageActivityData(
             3 -> dryRough
             4 -> legumeGreenRough
             5 -> nonLegumeGreenRough
+            2,1-> constraintRequire
             else -> 1.0
         }
     }
@@ -132,3 +133,7 @@ fun Double.roundTo2DecimalPlaces(): Double {
 fun Double.partOf(numerator: Int, denominator: Int): Double {
     return ( this * numerator / denominator).roundTo2DecimalPlaces()
 }
+
+
+//40% DCP wlay alag kr lo  phr on ka average
+// less walon ka avg
