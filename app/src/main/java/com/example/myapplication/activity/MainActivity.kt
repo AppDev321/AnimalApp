@@ -21,6 +21,7 @@ import com.example.myapplication.App
 import com.example.myapplication.AppLocale
 import com.example.myapplication.R
 import com.example.myapplication.model.AnimalData
+import com.example.myapplication.model.DMChartData
 import com.example.myapplication.model.LifeStageAnimalData
 import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.DataManagerUtils
@@ -125,9 +126,35 @@ class MainActivity : AppCompatActivity() {
                     else -> {}
                 }
             }
+            viewModel.dmChartResult.collectLatest {
+                when (it) {
+                    is Result.Success -> {
+                        val response = it.data
+                        if (response.status == true) {
+                            val dmChartData = ArrayList<DMChartData>()
+                            for (item in response.data[0] as ArrayList<Any>) {
+                                val gson = Gson()
+                                val json = gson.toJson(item)
+                                val pregnancyStage =
+                                    gson.fromJson(json, DMChartData::class.java)
+                                dmChartData.add(pregnancyStage)
+                            }
+                            DataManagerUtils.dmChartList = dmChartData
+                        }
+                        else {
+                            AppUtils.showSnackMessage(
+                                response.message.toString(),
+                                findViewById(R.id.rootView)
+                            )
+                        }
+                    }
+                    else->{}
+                }
+            }
         }
 
         viewModel.fetchAnimalList()
+        viewModel.getDMList()
         viewModel.fetchFeedCategoryList {
             DataManagerUtils.feedDataResponse = it
         }

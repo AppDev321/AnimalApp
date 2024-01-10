@@ -19,6 +19,7 @@ data class AnimalData(
     @SerializedName("image") var image: String? = null,
     @SerializedName("video") var video: String? = null
 )
+
 @Parcelize
 data class LifeStageAnimalData(
     @SerializedName("id") var id: Int? = null,
@@ -67,4 +68,14 @@ data class FeedItem(
     @SerializedName("dcp") var dcp: Double = 0.0,
     @SerializedName("tdn") var tdn: Double = 0.0,
     @SerializedName("cp") var cp: Double = 0.0,
+)
+
+
+data class DMChartData(
+    @SerializedName("id") var id: Int? = null,
+    @SerializedName("lifeStageID") var lifeStageID: Int? = null,
+    @SerializedName("dm") var dm: Double = 0.0,
+    @SerializedName("dcp") var dcp: Double = 0.0,
+    @SerializedName("tdn") var tdn: Double = 0.0,
+    @SerializedName("mcal") var mcal: Double = 0.0,
 )

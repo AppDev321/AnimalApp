@@ -33,7 +33,8 @@ class AppViewModel : ViewModel() {
      val getFeedDataResposne = _feedDataResponse
 
 
-
+    private val _dmChartResult = MutableSharedFlow<Result<GeneralResponse>>()
+    val dmChartResult = _dmChartResult.asSharedFlow()
 
 
 
@@ -97,7 +98,22 @@ class AppViewModel : ViewModel() {
         }
     }
 
+    fun getDMList() {
+        viewModelScope.launch {
+            _dmChartResult.emit(Result.Loading)
+            try {
+                val apiInterface = ApiClient.client.create(ApiInterface::class.java)
+                val call = apiInterface.getAnimalList("dmchart-get")
+                val response = withContext(Dispatchers.IO) {
+                    call.execute().body() as GeneralResponse
+                }
+                _dmChartResult.emit(Result.Success(response))
 
+            } catch (e: Exception) {
+                _dmChartResult.emit(Result.Error(e))
+            }
+        }
+    }
      fun calculateAnimalWeight(girth: Double, length: Double): Double {
         return  String.format("%.2f", ((girth * girth * length) / 300)*0.454).toDouble()
     }
