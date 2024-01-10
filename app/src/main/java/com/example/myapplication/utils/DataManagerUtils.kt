@@ -122,6 +122,11 @@ class LifeStageActivityData(
         }
     }
 
+    fun getDMChartAccordingToWeight():DMChartData
+    {
+        return DataManagerUtils.dmChartList.firstOrNull { it.weight >= animalWeight } ?: DataManagerUtils.dmChartList.last()
+    }
+
 }
 
 

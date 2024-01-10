@@ -9,10 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.activity.FeedActivity
 import com.example.myapplication.adapter.FeedItemAdapter
 import com.example.myapplication.adapter.FeedItemListener
-import com.example.myapplication.adapter.SubCategoryAdapter
 import com.example.myapplication.databinding.FragmentFeedBinding
 import com.example.myapplication.model.FeedItem
-import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.DataManagerUtils
 
 /**
@@ -39,13 +37,12 @@ class FeedFragment : Fragment() ,FeedItemListener {
 
         val feedData = FeedActivity.feedResponseData
 
-        val subCatlist = feedData.feetItemsList.filter{
+        val catlist = feedData.feetItemsList.filter{
             it.catID == categoryID
         }
             binding.mainRecycler.apply {
             layoutManager = LinearLayoutManager(requireActivity())
-            //adapter = SubCategoryAdapter(subCatlist,feedData.feetItemsList,this@FeedFragment)
-             adapter= FeedItemAdapter(subCatlist,this@FeedFragment)
+             adapter= FeedItemAdapter(catlist,this@FeedFragment)
 
         }
 

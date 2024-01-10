@@ -126,6 +126,8 @@ class MainActivity : AppCompatActivity() {
                     else -> {}
                 }
             }
+        }
+        lifecycleScope.launch{
             viewModel.dmChartResult.collectLatest {
                 when (it) {
                     is Result.Success -> {

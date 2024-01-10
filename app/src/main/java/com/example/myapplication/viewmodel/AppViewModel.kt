@@ -23,9 +23,6 @@ class AppViewModel : ViewModel() {
     private var _feedCatList : MutableList<FeedCategory> = arrayListOf()
     val getFeedCategoryList = _feedCatList
 
-    private var _feedSubCatList : MutableList<FeedSubCategory> = arrayListOf()
-    val getfeedSubCatList = _feedSubCatList
-
     private var _feedItemsList : MutableList<FeedItem> = arrayListOf()
     val getfeedItemsList = _feedItemsList
 
@@ -133,7 +130,6 @@ class AppViewModel : ViewModel() {
                 val data = response.singleData as FeedDataResponse
                 _feedDataResponse = data
                 _feedCatList.addAll(data.categoryList)
-                _feedSubCatList.addAll(data.subCategoryList)
                 _feedItemsList.addAll(data.feetItemsList)
                 dataList(data)
                 if(wantResponse)

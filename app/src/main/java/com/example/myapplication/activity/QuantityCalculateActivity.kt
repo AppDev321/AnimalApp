@@ -64,7 +64,9 @@ class QuantityCalculateActivity : AppCompatActivity() {
         "********* TDN of ITEM **********\n"+
                 getCalTDNItems().map {
                     it + "\n"
-                } +"\n Total TDN =${getTotalTDN()} KG"
+                } +"\n Total TDN =${getTotalTDN()} KG" +
+                    "********* DM Chart **********\n"+
+                    getDMChartofWeight()
 
     }
 
@@ -119,6 +121,12 @@ class QuantityCalculateActivity : AppCompatActivity() {
             totalDCP += lifestageCalc.getItemTDNCalculation(DataManagerUtils.selectedFeetItem, item)
         }
         totalDCP.roundTo2DecimalPlaces()
+    }
+
+    fun getDMChartofWeight()
+    {
+        val lifestageCalc = DataManagerUtils.lifeStageActivityData
+        lifestageCalc.getDMChartAccordingToWeight().weight.roundTo2DecimalPlaces()
     }
 
 }

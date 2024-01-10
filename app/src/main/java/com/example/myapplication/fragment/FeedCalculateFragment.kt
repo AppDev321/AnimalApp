@@ -8,18 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
-import com.example.myapplication.activity.FeedActivity
 import com.example.myapplication.activity.QuantityCalculateActivity
 import com.example.myapplication.adapter.FeedItemAdapter
 import com.example.myapplication.adapter.FeedItemListener
-import com.example.myapplication.adapter.SubCategoryAdapter
-import com.example.myapplication.databinding.FragmentFeedBinding
 import com.example.myapplication.databinding.FragmentFeedCalculateBinding
 import com.example.myapplication.databinding.ItemAnimalDetailBinding
-import com.example.myapplication.databinding.RowFeedItemBinding
 import com.example.myapplication.model.FeedItem
 import com.example.myapplication.utils.DataManagerUtils
-import kotlinx.coroutines.NonDisposableHandle.parent
 
 /**
  * A placeholder fragment containing a simple view.

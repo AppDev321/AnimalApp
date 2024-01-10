@@ -38,7 +38,6 @@ data class IngredientData(
 
 data class FeedDataResponse(
     @SerializedName("category") var categoryList: ArrayList<FeedCategory> = arrayListOf(),
-    @SerializedName("subCategroy") var subCategoryList: ArrayList<FeedSubCategory> = arrayListOf(),
     @SerializedName("items") var feetItemsList:  ArrayList<FeedItem> = arrayListOf(),
 )
 
@@ -49,13 +48,7 @@ data class FeedCategory(
     @SerializedName("marathi") var marathi: String? = null,
 )
 
-data class FeedSubCategory(
-    @SerializedName("id") var id: Int? = null,
-    @SerializedName("catID") var catID: Int? = null,
-    @SerializedName("eng") var name: String? = null,
-    @SerializedName("hindi") var hindi: String? = null,
-    @SerializedName("marathi") var marathi: String? = null,
-)
+
 
 data class FeedItem(
     @SerializedName("id") var id: Int? = null,
@@ -74,6 +67,7 @@ data class FeedItem(
 data class DMChartData(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("lifeStageID") var lifeStageID: Int? = null,
+    @SerializedName("weight") var weight: Double = 0.0,
     @SerializedName("dm") var dm: Double = 0.0,
     @SerializedName("dcp") var dcp: Double = 0.0,
     @SerializedName("tdn") var tdn: Double = 0.0,
