@@ -110,8 +110,7 @@ class MainActivity : AppCompatActivity() {
 
                         } else {
                             AppUtils.showSnackMessage(
-                                response.message.toString(),
-                                findViewById(R.id.rootView)
+                                response.message.toString(), findViewById(R.id.rootView)
                             )
                         }
                     }
@@ -127,30 +126,28 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        lifecycleScope.launch{
+        lifecycleScope.launch {
             viewModel.dmChartResult.collectLatest {
                 when (it) {
                     is Result.Success -> {
                         val response = it.data
                         if (response.status == true) {
                             val dmChartData = ArrayList<DMChartData>()
-                            for (item in response.data[0] as ArrayList<Any>) {
+                            for (item in response.data) {
                                 val gson = Gson()
                                 val json = gson.toJson(item)
-                                val pregnancyStage =
-                                    gson.fromJson(json, DMChartData::class.java)
+                                val pregnancyStage = gson.fromJson(json, DMChartData::class.java)
                                 dmChartData.add(pregnancyStage)
                             }
                             DataManagerUtils.dmChartList = dmChartData
-                        }
-                        else {
+                        } else {
                             AppUtils.showSnackMessage(
-                                response.message.toString(),
-                                findViewById(R.id.rootView)
+                                response.message.toString(), findViewById(R.id.rootView)
                             )
                         }
                     }
-                    else->{}
+
+                    else -> {}
                 }
             }
         }
@@ -165,23 +162,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadAnimalDetails(item: AnimalData, animalName: String) {
-
-
         detailContainer.visibility = View.VISIBLE
-
-        weightCalculateView(animalName)
-
-
         val imageView = findViewById<ImageView>(R.id.img)
         imageView.visibility = View.INVISIBLE
         val progressBar = findViewById<ProgressBar>(R.id.progress_bar)
         progressBar.visibility = View.VISIBLE
 
-        Picasso.get()
-            .load(item.image.toString())
-            .placeholder(R.drawable.placeholder)
-            .error(R.drawable.no_image)
-            .fit()
+        weightCalculateView(animalName)
+
+        Picasso.get().load(item.image.toString()).placeholder(R.drawable.placeholder)
+            .error(R.drawable.no_image).fit()
             .into(imageView, object : com.squareup.picasso.Callback {
                 override fun onSuccess() {
                     progressBar.visibility = View.GONE
@@ -200,13 +190,11 @@ class MainActivity : AppCompatActivity() {
                 AppUtils.showSnackMessage("Video Not Available", detailContainer)
                 return@setOnClickListener
             }
-
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(item.video.toString()))
             intent.setPackage("com.google.android.youtube")
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             } else {
-
                 val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.video.toString()))
                 startActivity(webIntent)
             }
@@ -227,7 +215,6 @@ class MainActivity : AppCompatActivity() {
         var weight = 0.0
         val btnCalculateWeight = findViewById<Button>(R.id.btnCheck)
         btnCalculateWeight.setOnClickListener {
-
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(it.windowToken, 0)
 
@@ -247,28 +234,23 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-
         val btnNutrition = findViewById<Button>(R.id.btnNext)
         btnNutrition.setOnClickListener {
-
             if (weight > 1) {
                 val intent = Intent(this@MainActivity, LifeStageActivity::class.java)
                 intent.putExtra(LifeStageActivity.animalName, animalName)
                 intent.putExtra(LifeStageActivity.weight, weight)
                 intent.putParcelableArrayListExtra(
-                    LifeStageActivity.pregnancyStageData,
-                    ArrayList(pregnancyStageAnimal)
+                    LifeStageActivity.pregnancyStageData, ArrayList(pregnancyStageAnimal)
                 )
                 intent.putParcelableArrayListExtra(
-                    LifeStageActivity.lifeStageData,
-                    ArrayList(listLifeStageAnimal)
+                    LifeStageActivity.lifeStageData, ArrayList(listLifeStageAnimal)
                 )
                 startActivity(intent)
             } else {
                 AppUtils.showSnackMessage("Check weight first", detailContainer)
             }
         }
-
 
         /*   val btnFeedNutrition = findViewById<Button>(R.id.btnFeedNutrition)
            btnFeedNutrition.setOnClickListener {
@@ -288,14 +270,9 @@ class MainActivity : AppCompatActivity() {
         for (data in listAnimals) {
             animalNames.add(
                 when (App().getCurrentAppLocale()) {
-                    AppLocale.ENG ->
-                        data.animalName.toString()
-
-                    AppLocale.HINDI ->
-                        data.hindi.toString()
-
-                    AppLocale.MARATHI ->
-                        data.marathi.toString()
+                    AppLocale.ENG -> data.animalName.toString()
+                    AppLocale.HINDI -> data.hindi.toString()
+                    AppLocale.MARATHI -> data.marathi.toString()
                 }
             )
         }

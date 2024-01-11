@@ -1,27 +1,12 @@
 package com.example.myapplication.activity
 
-import android.app.Activity
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager.widget.ViewPager
-import com.example.myapplication.R
-import com.example.myapplication.adapter.CategoryPagerAdapter
-import com.example.myapplication.databinding.ActivityFeedBinding
 import com.example.myapplication.databinding.ActivityQuantityCalculateBinding
-import com.example.myapplication.fragment.FeedCalculateFragment
-import com.example.myapplication.model.FeedDataResponse
-import com.example.myapplication.utils.AppUtils
+import com.example.myapplication.model.DMChartData
 import com.example.myapplication.utils.DataManagerUtils
-import com.example.myapplication.utils.hide
-import com.example.myapplication.utils.invisible
 import com.example.myapplication.utils.roundTo2DecimalPlaces
-import com.example.myapplication.utils.show
-import com.example.myapplication.viewmodel.AppViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.tabs.TabLayout
+import retrofit2.http.Body
 
 class QuantityCalculateActivity : AppCompatActivity() {
 
@@ -59,14 +44,17 @@ class QuantityCalculateActivity : AppCompatActivity() {
                     "********* DCP of ITEM **********\n"+
                     getCalDCPItems().map {
                         it + "\n"
-                    } +"\n Total DCP =${getTotalDCP()} KG\n\n" +
+                    } +"\n Total DCP =${DataManagerUtils.lifeStageActivityData.getCurrentTotalDCP()} KG\n\n" +
 
         "********* TDN of ITEM **********\n"+
                 getCalTDNItems().map {
                     it + "\n"
-                } +"\n Total TDN =${getTotalTDN()} KG" +
+                } +"\n Total TDN =${DataManagerUtils.lifeStageActivityData.getCurrentTotalTDN()} KG\n\n" +
                     "********* DM Chart **********\n"+
-                    getDMChartofWeight()
+                    "Body WEgit = "+getDMChartofWeight().weight.roundTo2DecimalPlaces()+"\n"+
+                    DataManagerUtils.lifeStageActivityData.getRemainingDCPChart() +"\n"+
+                    "Con DCP = ${ DataManagerUtils.lifeStageActivityData.getConReqOfDryItem()}% DCP"
+
 
     }
 
@@ -106,27 +94,13 @@ class QuantityCalculateActivity : AppCompatActivity() {
         }
     }
 
-    fun getTotalDCP(): Double  = run {
-        val lifestageCalc = DataManagerUtils.lifeStageActivityData
-        var totalDCP = 0.0
-        DataManagerUtils.selectedFeetItem.toList().map { item ->
-            totalDCP += lifestageCalc.getItemDCPCalculation(DataManagerUtils.selectedFeetItem, item)
-        }
-        totalDCP.roundTo2DecimalPlaces()
-    }
-    fun getTotalTDN(): Double  = run {
-        val lifestageCalc = DataManagerUtils.lifeStageActivityData
-        var totalDCP = 0.0
-        DataManagerUtils.selectedFeetItem.toList().map { item ->
-            totalDCP += lifestageCalc.getItemTDNCalculation(DataManagerUtils.selectedFeetItem, item)
-        }
-        totalDCP.roundTo2DecimalPlaces()
-    }
 
-    fun getDMChartofWeight()
+
+
+    fun getDMChartofWeight(): DMChartData
     {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
-        lifestageCalc.getDMChartAccordingToWeight().weight.roundTo2DecimalPlaces()
+         return lifestageCalc.getDMChartAccordingToWeight()
     }
 
 }

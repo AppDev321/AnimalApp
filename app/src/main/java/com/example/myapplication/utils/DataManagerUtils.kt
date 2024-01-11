@@ -121,11 +121,58 @@ class LifeStageActivityData(
             fooddcp.roundTo2DecimalPlaces()
         }
     }
-
+    fun getCurrentTotalDCP(): Double  = run {
+        val lifestageCalc = DataManagerUtils.lifeStageActivityData
+        var totalDCP = 0.0
+        DataManagerUtils.selectedFeetItem.toList().map { item ->
+            totalDCP += lifestageCalc.getItemDCPCalculation(DataManagerUtils.selectedFeetItem, item)
+        }
+        totalDCP.roundTo2DecimalPlaces()
+    }
+    fun getCurrentTotalTDN(): Double  = run {
+        val lifestageCalc = DataManagerUtils.lifeStageActivityData
+        var totalTDN = 0.0
+        DataManagerUtils.selectedFeetItem.toList().map { item ->
+            totalTDN += lifestageCalc.getItemTDNCalculation(DataManagerUtils.selectedFeetItem, item)
+        }
+        totalTDN.roundTo2DecimalPlaces()
+    }
     fun getDMChartAccordingToWeight():DMChartData
     {
         return DataManagerUtils.dmChartList.firstOrNull { it.weight >= animalWeight } ?: DataManagerUtils.dmChartList.last()
     }
+
+    fun getRemainingDCPChart():String
+    {
+        val getDMChart = getDMChartAccordingToWeight()
+      val requiredDCPFromBodyWeight =  getDMChart.dcp.roundTo2DecimalPlaces()
+        val currentDCPFromBodyWeight =  getCurrentTotalDCP()
+        val calculatedDCPDifference = requiredDCPFromBodyWeight - currentDCPFromBodyWeight
+
+        val returnData = "Total Req: DM=${getDMChart.dm} , DCP = ${getDMChart.dcp}, tdn = ${getDMChart.tdn} \n"+
+                "Curent Req: DM=${calcGreenRough()} , DCP = ${getCurrentTotalDCP()}, tdn = ${getCurrentTotalTDN()} \n"+
+                "Diff  : DM=${(getDMChart.dm - calcRough()).roundTo2DecimalPlaces() } , DCP = ${(getDMChart.dcp-getCurrentTotalDCP()).roundTo2DecimalPlaces() }, tdn = ${(getDMChart.tdn - getCurrentTotalTDN()).roundTo2DecimalPlaces()} \n"
+        return returnData
+    }
+
+    fun getConReqOfDryItem():Double
+    {
+        val getDMChart = getDMChartAccordingToWeight()
+        val currentTotalConReq = calcConstraintRequire()
+        var difDCP = (getDMChart.dcp - getCurrentTotalDCP()).roundTo2DecimalPlaces()
+        difDCP = (difDCP * 100 / currentTotalConReq).roundTo2DecimalPlaces()
+        return difDCP
+    }
+    fun get40PerConReqDCPItemAvg()
+    {
+
+    }
+
+    fun getLess40PerConReqDCPItemAvg()
+    {
+
+    }
+
 
 }
 
