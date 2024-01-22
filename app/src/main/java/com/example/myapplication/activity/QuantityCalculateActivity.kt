@@ -1,6 +1,7 @@
 package com.example.myapplication.activity
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityQuantityCalculateBinding
 import com.example.myapplication.model.DMChartData
@@ -17,6 +18,15 @@ class QuantityCalculateActivity : AppCompatActivity() {
 
         binding = ActivityQuantityCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //first set only
+        DataManagerUtils.allSelectedItems = DataManagerUtils.selectedFeetItem
+
+        //now transform to skip 1,2 categrory items
+        DataManagerUtils.selectedFeetItem = DataManagerUtils.selectedFeetItem.filter {
+            (it.catID != 1 && it.catID !=2)
+        }.toMutableList()
+
 
 
         binding.txtCalculation.text =
@@ -62,8 +72,8 @@ class QuantityCalculateActivity : AppCompatActivity() {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
         return DataManagerUtils.selectedFeetItem.toList().map { item ->
             "${item.name} = ${
-                lifestageCalc.getDMValueBySelectedItem(item) /
-                        lifestageCalc.getSameCatSelectedItem(DataManagerUtils.selectedFeetItem, item)
+                (lifestageCalc.getDMValueBySelectedItem(item) /
+                        lifestageCalc.getSameCatSelectedItem(DataManagerUtils.selectedFeetItem, item)).roundTo2DecimalPlaces()
             } KG"
         }
     }
@@ -79,6 +89,7 @@ class QuantityCalculateActivity : AppCompatActivity() {
     fun getCalDCPItems(): List<String> {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
         return DataManagerUtils.selectedFeetItem.toList().map { item ->
+
             "${item.name} = ${
                 lifestageCalc.getItemDCPCalculation(DataManagerUtils.selectedFeetItem, item)
             } KG"

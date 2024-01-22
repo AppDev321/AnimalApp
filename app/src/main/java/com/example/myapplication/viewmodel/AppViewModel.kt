@@ -112,7 +112,7 @@ class AppViewModel : ViewModel() {
         }
     }
      fun calculateAnimalWeight(girth: Double, length: Double): Double {
-        return  String.format("%.2f", ((girth * girth * length) / 300)*0.454).toDouble()
+        return  String.format("%.2f", (girth * girth * length) / 660).toDouble()
     }
 
     fun fetchFeedCategoryList(wantResponse:Boolean= false,dataList : (FeedDataResponse)->Unit) {

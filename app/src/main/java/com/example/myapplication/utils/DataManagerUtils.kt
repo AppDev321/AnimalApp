@@ -10,6 +10,7 @@ object DataManagerUtils {
     var feedDataResponse: FeedDataResponse = FeedDataResponse()
     var lifeStageActivityData: LifeStageActivityData = LifeStageActivityData()
     var selectedFeetItem: MutableList<FeedItem> = arrayListOf()
+    var allSelectedItems: MutableList<FeedItem> = arrayListOf() //skip cat 1,2 items now
     var dmChartList: MutableList<DMChartData> = arrayListOf()
 }
 
@@ -42,7 +43,12 @@ class LifeStageActivityData(
     }
 
     private fun calcDryMatter(): Double {
-        return animalWeight.percentOf(2.5)
+        return try {
+            getDMChartAccordingToWeight().dm.roundTo2DecimalPlaces()
+        } catch (e:Exception) {
+            0.0
+        }
+    // return animalWeight.percentOf(2.5)
     }
 
     private fun calcConstraintRequire(): Double {
@@ -101,7 +107,7 @@ class LifeStageActivityData(
     }
 
     fun getItemDCPCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
-        val selectedItemFoodCalc = getItemFooderCalculation(items,selectedItem)
+        val selectedItemFoodCalc =  getItemDMCalculation(items,selectedItem)//getItemFooderCalculation(items,selectedItem)
         return with(selectedItem) {
             Log.e("Cal"," DCP = $dcp")
             val cpVaue = dcp
@@ -150,7 +156,7 @@ class LifeStageActivityData(
         val calculatedDCPDifference = requiredDCPFromBodyWeight - currentDCPFromBodyWeight
 
         val returnData = "Total Req: DM=${getDMChart.dm} , DCP = ${getDMChart.dcp}, tdn = ${getDMChart.tdn} \n"+
-                "Curent Req: DM=${calcGreenRough()} , DCP = ${getCurrentTotalDCP()}, tdn = ${getCurrentTotalTDN()} \n"+
+                "Curent Req: DM=${calcRough()} , DCP = ${getCurrentTotalDCP()}, tdn = ${getCurrentTotalTDN()} \n"+
                 "Diff  : DM=${(getDMChart.dm - calcRough()).roundTo2DecimalPlaces() } , DCP = ${(getDMChart.dcp-getCurrentTotalDCP()).roundTo2DecimalPlaces() }, tdn = ${(getDMChart.tdn - getCurrentTotalTDN()).roundTo2DecimalPlaces()} \n"
         return returnData
     }
@@ -160,7 +166,9 @@ class LifeStageActivityData(
         val getDMChart = getDMChartAccordingToWeight()
         val currentTotalConReq = calcConstraintRequire()
         var difDCP = (getDMChart.dcp - getCurrentTotalDCP()).roundTo2DecimalPlaces()
-        difDCP = (difDCP * 100 / currentTotalConReq).roundTo2DecimalPlaces()
+        var diffDM = (getDMChart.dm - calcRough()).roundTo2DecimalPlaces()
+       // difDCP = (difDCP * 100 / currentTotalConReq).roundTo2DecimalPlaces()
+        difDCP = (difDCP * 100 / diffDM).roundTo2DecimalPlaces()
         return difDCP
     }
     fun get40PerConReqDCPItemAvg()
