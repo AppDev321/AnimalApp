@@ -45,10 +45,10 @@ class LifeStageActivityData(
     private fun calcDryMatter(): Double {
         return try {
             getDMChartAccordingToWeight().dm.roundTo2DecimalPlaces()
-        } catch (e:Exception) {
+        } catch (e: Exception) {
             0.0
         }
-    // return animalWeight.percentOf(2.5)
+        // return animalWeight.percentOf(2.5)
     }
 
     private fun calcConstraintRequire(): Double {
@@ -81,7 +81,7 @@ class LifeStageActivityData(
             3 -> dryRough
             4 -> legumeGreenRough
             5 -> nonLegumeGreenRough
-            2,1-> constraintRequire
+            2, 1 -> constraintRequire
             else -> 1.0
         }
     }
@@ -91,43 +91,55 @@ class LifeStageActivityData(
 
     fun getItemDMCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
 
-       return getDMValueBySelectedItem(selectedItem) / getSameCatSelectedItem(items, selectedItem)
+        return getDMValueBySelectedItem(selectedItem) / getSameCatSelectedItem(items, selectedItem)
 
     }
+
     fun getItemFooderCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
-        val selectedItemDMCalc = getItemDMCalculation(items,selectedItem)
-         return with(selectedItem) {
-            Log.e("Cal"," DM = ${dm}")
+        val selectedItemDMCalc = getItemDMCalculation(items, selectedItem)
+        return with(selectedItem) {
+            Log.e("Cal", " DM = ${dm}")
             val dmValue = dm
 
-            val fooderCalc = (100 * selectedItemDMCalc) /dmValue
-            Log.e("Cal"," 100 * ${selectedItemDMCalc}/${dmValue} = ${ fooderCalc.roundTo2DecimalPlaces()}")
+            val fooderCalc = (100 * selectedItemDMCalc) / dmValue
+            Log.e(
+                "Cal",
+                " 100 * ${selectedItemDMCalc}/${dmValue} = ${fooderCalc.roundTo2DecimalPlaces()}"
+            )
             fooderCalc.roundTo2DecimalPlaces()
         }
     }
 
     fun getItemDCPCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
-        val selectedItemFoodCalc =  getItemDMCalculation(items,selectedItem)//getItemFooderCalculation(items,selectedItem)
+        val selectedItemFoodCalc =
+            getItemDMCalculation(items, selectedItem)//getItemFooderCalculation(items,selectedItem)
         return with(selectedItem) {
-            Log.e("Cal"," DCP = $dcp")
+            Log.e("Cal", " DCP = $dcp")
             val cpVaue = dcp
-            val fooddcp = (cpVaue * selectedItemFoodCalc) /100
-            Log.e("Cal"," ${cpVaue} * ${selectedItemFoodCalc}/${100} = ${ fooddcp.roundTo2DecimalPlaces()}")
+            val fooddcp = (cpVaue * selectedItemFoodCalc) / 100
+            Log.e(
+                "Cal",
+                " ${cpVaue} * ${selectedItemFoodCalc}/${100} = ${fooddcp.roundTo2DecimalPlaces()}"
+            )
             fooddcp.roundTo2DecimalPlaces()
         }
     }
 
     fun getItemTDNCalculation(items: List<FeedItem>, selectedItem: FeedItem): Double {
-        val selectedItemDMCalc = getItemDMCalculation(items,selectedItem)
+        val selectedItemDMCalc = getItemDMCalculation(items, selectedItem)
         return with(selectedItem) {
-            Log.e("Cal"," TDN = $tdn")
+            Log.e("Cal", " TDN = $tdn")
             val tdnValue = tdn
-            val fooddcp = (tdnValue * selectedItemDMCalc) /100
-            Log.e("Cal"," ${tdnValue} * ${selectedItemDMCalc}/${100} = ${ fooddcp.roundTo2DecimalPlaces()}")
+            val fooddcp = (tdnValue * selectedItemDMCalc) / 100
+            Log.e(
+                "Cal",
+                " ${tdnValue} * ${selectedItemDMCalc}/${100} = ${fooddcp.roundTo2DecimalPlaces()}"
+            )
             fooddcp.roundTo2DecimalPlaces()
         }
     }
-    fun getCurrentTotalDCP(): Double  = run {
+
+    fun getCurrentTotalDCP(): Double = run {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
         var totalDCP = 0.0
         DataManagerUtils.selectedFeetItem.toList().map { item ->
@@ -135,7 +147,8 @@ class LifeStageActivityData(
         }
         totalDCP.roundTo2DecimalPlaces()
     }
-    fun getCurrentTotalTDN(): Double  = run {
+
+    fun getCurrentTotalTDN(): Double = run {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
         var totalTDN = 0.0
         DataManagerUtils.selectedFeetItem.toList().map { item ->
@@ -143,41 +156,77 @@ class LifeStageActivityData(
         }
         totalTDN.roundTo2DecimalPlaces()
     }
-    fun getDMChartAccordingToWeight():DMChartData
-    {
-        return DataManagerUtils.dmChartList.firstOrNull { it.weight >= animalWeight } ?: DataManagerUtils.dmChartList.last()
+
+    fun getDMChartAccordingToWeight(): DMChartData {
+        return DataManagerUtils.dmChartList.firstOrNull { it.weight >= animalWeight }
+            ?: DataManagerUtils.dmChartList.last()
     }
 
-    fun getRemainingDCPChart():String
-    {
+    fun getRemainingDCPChart(): String {
         val getDMChart = getDMChartAccordingToWeight()
-      val requiredDCPFromBodyWeight =  getDMChart.dcp.roundTo2DecimalPlaces()
-        val currentDCPFromBodyWeight =  getCurrentTotalDCP()
+        val requiredDCPFromBodyWeight = getDMChart.dcp.roundTo2DecimalPlaces()
+        val currentDCPFromBodyWeight = getCurrentTotalDCP()
         val calculatedDCPDifference = requiredDCPFromBodyWeight - currentDCPFromBodyWeight
 
-        val returnData = "Total Req: DM=${getDMChart.dm} , DCP = ${getDMChart.dcp}, tdn = ${getDMChart.tdn} \n"+
-                "Curent Req: DM=${calcRough()} , DCP = ${getCurrentTotalDCP()}, tdn = ${getCurrentTotalTDN()} \n"+
-                "Diff  : DM=${(getDMChart.dm - calcRough()).roundTo2DecimalPlaces() } , DCP = ${(getDMChart.dcp-getCurrentTotalDCP()).roundTo2DecimalPlaces() }, tdn = ${(getDMChart.tdn - getCurrentTotalTDN()).roundTo2DecimalPlaces()} \n"
+        val returnData =
+            "Total Req: DM=${getDMChart.dm} , DCP = ${getDMChart.dcp}, tdn = ${getDMChart.tdn} \n" +
+                    "Curent Req: DM=${calcRough()} , DCP = ${getCurrentTotalDCP()}, tdn = ${getCurrentTotalTDN()} \n" +
+                    "Diff  : DM=${(getDMChart.dm - calcRough()).roundTo2DecimalPlaces()} , DCP = ${(getDMChart.dcp - getCurrentTotalDCP()).roundTo2DecimalPlaces()}, tdn = ${(getDMChart.tdn - getCurrentTotalTDN()).roundTo2DecimalPlaces()} \n"
         return returnData
     }
 
-    fun getConReqOfDryItem():Double
-    {
+    fun getConReqOfDryItem(): Double {
         val getDMChart = getDMChartAccordingToWeight()
         val currentTotalConReq = calcConstraintRequire()
         var difDCP = (getDMChart.dcp - getCurrentTotalDCP()).roundTo2DecimalPlaces()
         var diffDM = (getDMChart.dm - calcRough()).roundTo2DecimalPlaces()
-       // difDCP = (difDCP * 100 / currentTotalConReq).roundTo2DecimalPlaces()
+        // difDCP = (difDCP * 100 / currentTotalConReq).roundTo2DecimalPlaces()
         difDCP = (difDCP * 100 / diffDM).roundTo2DecimalPlaces()
         return difDCP
     }
-    fun get40PerConReqDCPItemAvg()
-    {
 
+    fun get40PerConReqDCPItemAvg(selectedFeetItem: List<FeedItem>): List<FeedItem> {
+        return selectedFeetItem.filter {
+            it.dcp >= 44
+        }
     }
 
-    fun getLess40PerConReqDCPItemAvg()
-    {
+    fun getLess40PerConReqDCPItemAvg(selectedFeetItem: List<FeedItem>): List<FeedItem> {
+        return selectedFeetItem.filter {
+            it.dcp < 44
+        }
+    }
+
+    fun pearsonSquareFormula(selectedFeetItem: List<FeedItem>):String{
+        val itemsUpperRightCorner = get40PerConReqDCPItemAvg(selectedFeetItem)
+        val itemsBottomRightCorner = getLess40PerConReqDCPItemAvg(selectedFeetItem)
+        val avgDCPUpperRight = itemsUpperRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
+        val avgDCPBottomRight = itemsBottomRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
+        val requiredDCP = getConReqOfDryItem()
+        val getDMChart = getDMChartAccordingToWeight()
+        val diffDM = (getDMChart.dm - calcRough()).roundTo2DecimalPlaces()
+
+        val upperCalcDCP = (avgDCPBottomRight - requiredDCP).roundTo2DecimalPlaces()
+        val bottomCalcDCP = (avgDCPUpperRight - requiredDCP).roundTo2DecimalPlaces()
+
+        val totalDCP = (upperCalcDCP + bottomCalcDCP).roundTo2DecimalPlaces()
+
+        val totalConcentrait = ((upperCalcDCP * diffDM) / totalDCP).roundTo2DecimalPlaces()
+        val equalyDistribute = (diffDM - totalConcentrait).roundTo2DecimalPlaces()
+
+        val distributedNonRoughes = (equalyDistribute / itemsBottomRightCorner.size).roundTo2DecimalPlaces()
+
+
+        return "DCP Remaing Nutrient = $requiredDCP\n " +
+                "avgDCPUpperRight=$avgDCPUpperRight \n " +
+                "avgDCPBottomRight=$avgDCPBottomRight \n" +
+                "Upper Item Calc = $upperCalcDCP \n " +
+                "Lower Item Calc=$bottomCalcDCP\n"+
+                "Total Calc = $totalDCP\n"+
+                "Conc mix will have = $totalConcentrait \n"+
+                "Equally divide = $equalyDistribute KG \n"+
+                "Distributed Value = ${distributedNonRoughes} KG \n total Non-Rough Item = ${ itemsBottomRightCorner.size}"
+
 
     }
 
@@ -188,14 +237,13 @@ class LifeStageActivityData(
 infix fun Double.percentOf(value: Double): Double {
     return (this * (value / 100)).roundTo2DecimalPlaces()
 }
+
 fun Double.roundTo2DecimalPlaces(): Double {
     return "%.2f".format(this).toDouble()
 }
 
 fun Double.partOf(numerator: Int, denominator: Int): Double {
-    return ( this * numerator / denominator).roundTo2DecimalPlaces()
+    return (this * numerator / denominator).roundTo2DecimalPlaces()
 }
 
 
-//40% DCP wlay alag kr lo  phr on ka average
-// less walon ka avg

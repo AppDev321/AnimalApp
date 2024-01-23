@@ -5,6 +5,7 @@ import android.provider.ContactsContract.Data
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityQuantityCalculateBinding
 import com.example.myapplication.model.DMChartData
+import com.example.myapplication.model.FeedItem
 import com.example.myapplication.utils.DataManagerUtils
 import com.example.myapplication.utils.roundTo2DecimalPlaces
 import retrofit2.http.Body
@@ -12,19 +13,20 @@ import retrofit2.http.Body
 class QuantityCalculateActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityQuantityCalculateBinding
+    lateinit var  allItems : MutableList<FeedItem>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityQuantityCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        allItems = DataManagerUtils.selectedFeetItem
         //first set only
-        DataManagerUtils.allSelectedItems = DataManagerUtils.selectedFeetItem
+       // DataManagerUtils.allSelectedItems =
 
         //now transform to skip 1,2 categrory items
-        DataManagerUtils.selectedFeetItem = DataManagerUtils.selectedFeetItem.filter {
-            (it.catID != 1 && it.catID !=2)
+        DataManagerUtils.selectedFeetItem = DataManagerUtils.selectedFeetItem.filterNot {
+            it.catID == 1 || it.catID == 2
         }.toMutableList()
 
 
@@ -63,7 +65,9 @@ class QuantityCalculateActivity : AppCompatActivity() {
                     "********* DM Chart **********\n"+
                     "Body WEgit = "+getDMChartofWeight().weight.roundTo2DecimalPlaces()+"\n"+
                     DataManagerUtils.lifeStageActivityData.getRemainingDCPChart() +"\n"+
-                    "Con DCP = ${ DataManagerUtils.lifeStageActivityData.getConReqOfDryItem()}% DCP"
+                    "Con DCP = ${ DataManagerUtils.lifeStageActivityData.getConReqOfDryItem()}% DCP \n\n"+
+                    "***** Pearcing formula Values ***********\n\n"+
+                    getPearcingMethodFormala() +"\n\n"
 
 
     }
@@ -112,6 +116,14 @@ class QuantityCalculateActivity : AppCompatActivity() {
     {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
          return lifestageCalc.getDMChartAccordingToWeight()
+    }
+
+    fun getPearcingMethodFormala():String
+    {
+        val nonGreenItems = allItems.filter {
+            (it.catID == 1 || it.catID ==2)
+        }.toMutableList()
+        return DataManagerUtils.lifeStageActivityData.pearsonSquareFormula(nonGreenItems)
     }
 
 }
