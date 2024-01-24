@@ -1,6 +1,7 @@
 package com.example.myapplication.fragment
 
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import com.example.myapplication.adapter.FeedItemListener
 import com.example.myapplication.databinding.FragmentFeedBinding
 import com.example.myapplication.model.FeedItem
 import com.example.myapplication.utils.DataManagerUtils
+import com.example.myapplication.utils.safeGet
 
 /**
  * A placeholder fragment containing a simple view.
@@ -36,9 +38,12 @@ class FeedFragment : Fragment() ,FeedItemListener {
         val categoryID = arguments?.getInt(ARG_SECTION_NUMBER)
 
         val feedData = FeedActivity.feedResponseData
+        val catName = DataManagerUtils.feedDataResponse.categoryList.find { it.id == categoryID }?.name
 
         val catlist = feedData.feetItemsList.filter{
             it.catID == categoryID
+        }.map {
+            it.copy(categoryName = catName.safeGet())
         }
             binding.mainRecycler.apply {
             layoutManager = LinearLayoutManager(requireActivity())
@@ -73,5 +78,7 @@ class FeedFragment : Fragment() ,FeedItemListener {
         else
             DataManagerUtils.selectedFeetItem.remove(item)
 
+        DataManagerUtils.allSelectedItems.clear()
+        DataManagerUtils.allSelectedItems.addAll(DataManagerUtils.selectedFeetItem)
     }
 }

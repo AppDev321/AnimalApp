@@ -48,11 +48,14 @@ class FeedItemAdapter(
             }
         else  holder.viewDataBinding.checkbox.hide()
 
+
+
         if(showCPCDetails)
             holder.viewDataBinding.itemDetailContainer.show()
         else
             holder.viewDataBinding.itemDetailContainer.hide()
 
+        holder.viewDataBinding.txtCategory.text= list[position].categoryName
         holder.viewDataBinding.txtDm.text = ""+list[position].dm
         holder.viewDataBinding.txtDcp.text = ""+list[position].dcp
         holder.viewDataBinding.txtCp.text = ""+list[position].cp

@@ -1,14 +1,12 @@
 package com.example.myapplication.activity
 
 import android.os.Bundle
-import android.provider.ContactsContract.Data
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityQuantityCalculateBinding
 import com.example.myapplication.model.DMChartData
 import com.example.myapplication.model.FeedItem
 import com.example.myapplication.utils.DataManagerUtils
 import com.example.myapplication.utils.roundTo2DecimalPlaces
-import retrofit2.http.Body
 
 class QuantityCalculateActivity : AppCompatActivity() {
 
@@ -20,7 +18,7 @@ class QuantityCalculateActivity : AppCompatActivity() {
 
         binding = ActivityQuantityCalculateBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        allItems = DataManagerUtils.selectedFeetItem
+        allItems = DataManagerUtils.allSelectedItems
         //first set only
        // DataManagerUtils.allSelectedItems =
 
@@ -43,7 +41,7 @@ class QuantityCalculateActivity : AppCompatActivity() {
 
         "********* Item DM **********\n"+
 
-                    getItems().map {
+                    getDMItems().map {
                         it + "\n"
                     } +"\n\n\n"+
 
@@ -72,7 +70,7 @@ class QuantityCalculateActivity : AppCompatActivity() {
 
     }
 
-    fun getItems(): List<String> {
+    fun getDMItems(): List<String> {
         val lifestageCalc = DataManagerUtils.lifeStageActivityData
         return DataManagerUtils.selectedFeetItem.toList().map { item ->
             "${item.name} = ${
@@ -123,7 +121,9 @@ class QuantityCalculateActivity : AppCompatActivity() {
         val nonGreenItems = allItems.filter {
             (it.catID == 1 || it.catID ==2)
         }.toMutableList()
-        return DataManagerUtils.lifeStageActivityData.pearsonSquareFormula(nonGreenItems)
+
+        val greenItems = DataManagerUtils.selectedFeetItem
+        return DataManagerUtils.lifeStageActivityData.pearsonSquareFormula(nonGreenItems,greenItems)
     }
 
 }

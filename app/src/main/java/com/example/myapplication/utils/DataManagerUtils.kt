@@ -197,9 +197,9 @@ class LifeStageActivityData(
         }
     }
 
-    fun pearsonSquareFormula(selectedFeetItem: List<FeedItem>):String{
-        val itemsUpperRightCorner = get40PerConReqDCPItemAvg(selectedFeetItem)
-        val itemsBottomRightCorner = getLess40PerConReqDCPItemAvg(selectedFeetItem)
+    fun pearsonSquareFormula(nonGreenItems: List<FeedItem> ,greenItems : List<FeedItem> ):String{
+        val itemsUpperRightCorner = get40PerConReqDCPItemAvg(nonGreenItems)
+        val itemsBottomRightCorner = getLess40PerConReqDCPItemAvg(nonGreenItems)
         val avgDCPUpperRight = itemsUpperRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
         val avgDCPBottomRight = itemsBottomRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
         val requiredDCP = getConReqOfDryItem()
@@ -225,10 +225,32 @@ class LifeStageActivityData(
                 "Total Calc = $totalDCP\n"+
                 "Conc mix will have = $totalConcentrait \n"+
                 "Equally divide = $equalyDistribute KG \n"+
-                "Distributed Value = ${distributedNonRoughes} KG \n total Non-Rough Item = ${ itemsBottomRightCorner.size}"
+                "Distributed Value = $distributedNonRoughes KG \n total Non-Rough Item = ${ itemsBottomRightCorner.size} \n\n"+
+                "***** CHART VALUES ***** \n\n"+
+                itemsBottomRightCorner.toList().map { item ->
+                    val dcpValue =(distributedNonRoughes * item.dcp /100).roundTo2DecimalPlaces()
+                    val dmValue =(distributedNonRoughes * item.dm /100).roundTo2DecimalPlaces()
+                    val tdnValue =(distributedNonRoughes * item.tdn /100).roundTo2DecimalPlaces()
+                    "${item.name} = Amount: $distributedNonRoughes DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
+                }+
+                itemsUpperRightCorner.toList().map { item ->
+                    val dcpValue =(totalConcentrait * item.dcp /100).roundTo2DecimalPlaces()
+                    val dmValue =(totalConcentrait * item.dm /100).roundTo2DecimalPlaces()
+                    val tdnValue =(totalConcentrait * item.tdn /100).roundTo2DecimalPlaces()
+                    "${item.name} =Amount: $totalConcentrait DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
+                }+
+                greenItems.toList().map { item ->
+                    val fooderValue = getItemFooderCalculation(greenItems, item)
+                    val dcpValue = getItemDCPCalculation(greenItems, item)
+                    val dmValue = (getDMValueBySelectedItem(item) / getSameCatSelectedItem(greenItems, item)).roundTo2DecimalPlaces()
+                    val tdnValue = getItemTDNCalculation(DataManagerUtils.selectedFeetItem, item)
+
+                    "${item.name} = Amount: $fooderValue DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
+                }
 
 
     }
+
 
 
 }
