@@ -1,5 +1,6 @@
 package com.example.myapplication.activity
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivityQuantityCalculateBinding
@@ -67,6 +68,11 @@ class QuantityCalculateActivity : AppCompatActivity() {
                     "***** Pearcing formula Values ***********\n\n"+
                     getPearcingMethodFormala() +"\n\n"
 
+
+
+        binding.btnChart.setOnClickListener{
+startActivity(Intent(this,FeedChartActivity::class.java))
+        }
 
     }
 

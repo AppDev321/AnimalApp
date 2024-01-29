@@ -4,6 +4,7 @@ import android.util.Log
 import com.example.myapplication.model.DMChartData
 import com.example.myapplication.model.FeedDataResponse
 import com.example.myapplication.model.FeedItem
+import com.example.myapplication.utils.DataManagerUtils.finalFeedChartList
 
 object DataManagerUtils {
 
@@ -12,6 +13,9 @@ object DataManagerUtils {
     var selectedFeetItem: MutableList<FeedItem> = arrayListOf()
     var allSelectedItems: MutableList<FeedItem> = arrayListOf() //skip cat 1,2 items now
     var dmChartList: MutableList<DMChartData> = arrayListOf()
+
+
+    var finalFeedChartList: MutableList<FeedItem> = arrayListOf()
 }
 
 
@@ -185,23 +189,18 @@ class LifeStageActivityData(
         return difDCP
     }
 
-    fun get40PerConReqDCPItemAvg(selectedFeetItem: List<FeedItem>): List<FeedItem> {
-        return selectedFeetItem.filter {
-            it.dcp >= 44
-        }
-    }
-
-    fun getLess40PerConReqDCPItemAvg(selectedFeetItem: List<FeedItem>): List<FeedItem> {
-        return selectedFeetItem.filter {
-            it.dcp < 44
-        }
-    }
 
     fun pearsonSquareFormula(nonGreenItems: List<FeedItem> ,greenItems : List<FeedItem> ):String{
-        val itemsUpperRightCorner = get40PerConReqDCPItemAvg(nonGreenItems)
-        val itemsBottomRightCorner = getLess40PerConReqDCPItemAvg(nonGreenItems)
-        val avgDCPUpperRight = itemsUpperRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
+        val itemsUpperRightCorner = nonGreenItems.maxBy {
+            it.dcp
+        }
+        val itemsBottomRightCorner = nonGreenItems.toMutableList()
+        itemsBottomRightCorner.remove(itemsUpperRightCorner)
+
+
+        val avgDCPUpperRight =  itemsUpperRightCorner.dcp.roundTo2DecimalPlaces()
         val avgDCPBottomRight = itemsBottomRightCorner.map { it.dcp }.average().roundTo2DecimalPlaces()
+
         val requiredDCP = getConReqOfDryItem()
         val getDMChart = getDMChartAccordingToWeight()
         val diffDM = (getDMChart.dm - calcRough()).roundTo2DecimalPlaces()
@@ -216,7 +215,7 @@ class LifeStageActivityData(
 
         val distributedNonRoughes = (equalyDistribute / itemsBottomRightCorner.size).roundTo2DecimalPlaces()
 
-
+        finalFeedChartList.clear()
         return "DCP Remaing Nutrient = $requiredDCP\n " +
                 "avgDCPUpperRight=$avgDCPUpperRight \n " +
                 "avgDCPBottomRight=$avgDCPBottomRight \n" +
@@ -231,12 +230,23 @@ class LifeStageActivityData(
                     val dcpValue =(distributedNonRoughes * item.dcp /100).roundTo2DecimalPlaces()
                     val dmValue =(distributedNonRoughes * item.dm /100).roundTo2DecimalPlaces()
                     val tdnValue =(distributedNonRoughes * item.tdn /100).roundTo2DecimalPlaces()
+                    item.dcp = dcpValue
+                    item.tdn = tdnValue
+                    item.dm = dmValue
+                    item.amountOfKg = distributedNonRoughes
+                    finalFeedChartList.add(item)
                     "${item.name} = Amount: $distributedNonRoughes DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
+
                 }+
-                itemsUpperRightCorner.toList().map { item ->
+                itemsUpperRightCorner.let { item ->
                     val dcpValue =(totalConcentrait * item.dcp /100).roundTo2DecimalPlaces()
                     val dmValue =(totalConcentrait * item.dm /100).roundTo2DecimalPlaces()
                     val tdnValue =(totalConcentrait * item.tdn /100).roundTo2DecimalPlaces()
+                    item.dcp = dcpValue
+                    item.tdn = tdnValue
+                    item.dm = dmValue
+                    item.amountOfKg = totalConcentrait
+                    finalFeedChartList.add(item)
                     "${item.name} =Amount: $totalConcentrait DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
                 }+
                 greenItems.toList().map { item ->
@@ -244,10 +254,13 @@ class LifeStageActivityData(
                     val dcpValue = getItemDCPCalculation(greenItems, item)
                     val dmValue = (getDMValueBySelectedItem(item) / getSameCatSelectedItem(greenItems, item)).roundTo2DecimalPlaces()
                     val tdnValue = getItemTDNCalculation(DataManagerUtils.selectedFeetItem, item)
-
+                    item.dcp = dcpValue
+                    item.tdn = tdnValue
+                    item.dm = dmValue
+                    item.amountOfKg = fooderValue
+                    finalFeedChartList.add(item)
                     "${item.name} = Amount: $fooderValue DCP: $dcpValue  DM: $dmValue    TDN: $tdnValue \n"
                 }
-
 
     }
 

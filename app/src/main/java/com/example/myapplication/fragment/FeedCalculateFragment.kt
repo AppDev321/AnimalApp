@@ -14,6 +14,7 @@ import com.example.myapplication.adapter.FeedItemListener
 import com.example.myapplication.databinding.FragmentFeedCalculateBinding
 import com.example.myapplication.databinding.ItemAnimalDetailBinding
 import com.example.myapplication.model.FeedItem
+import com.example.myapplication.utils.AppUtils
 import com.example.myapplication.utils.DataManagerUtils
 
 /**
@@ -52,7 +53,7 @@ class FeedCalculateFragment : Fragment(), FeedItemListener {
         }
 
         binding.btnCalculate.setOnClickListener {
-            startActivity(Intent(activity,QuantityCalculateActivity::class.java))
+           startActivity(Intent(activity, QuantityCalculateActivity::class.java))
         }
 
 

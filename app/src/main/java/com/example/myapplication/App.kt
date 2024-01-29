@@ -2,9 +2,9 @@ package com.example.myapplication
 
 import android.app.Application
 import com.example.myapplication.rosetta.LanguageSwitcher
-import com.example.myapplication.viewmodel.AppViewModel
 import com.squareup.picasso.LruCache
 import com.squareup.picasso.Picasso
+import com.yariksoffice.lingver.Lingver
 import java.util.*
 
 
@@ -26,14 +26,18 @@ companion object{
             .build()
 
         Picasso.setSingletonInstance(picasso)
+        Lingver.init(this, Locale.ENGLISH)
 
         init()
+
     }
     private fun init(){
         AutomatedSupportedLocales()
         manualSupportedLocales()
         languageSwitcher =  LanguageSwitcher(this, firstLaunchLocale)
         languageSwitcher.setSupportedLocales(supportedLocales)
+
+
     }
 
     private fun AutomatedSupportedLocales() {

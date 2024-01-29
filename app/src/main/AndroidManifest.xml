@@ -14,14 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
-        <activity
-            android:name=".activity.FeedActivity"
-            android:exported="false"
-      />
+
         <activity
             android:name=".activity.SplashScreen"
             android:exported="true"
-         >
+            android:screenOrientation="portrait"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -57,6 +55,17 @@
 
         <activity
             android:name=".activity.QuantityCalculateActivity"
+            android:screenOrientation="portrait"
+            />
+        <activity
+            android:name=".activity.FeedActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            />
+
+        <activity
+            android:name=".activity.FeedChartActivity"
+            android:exported="false"
             android:screenOrientation="portrait"
             />
     </application>

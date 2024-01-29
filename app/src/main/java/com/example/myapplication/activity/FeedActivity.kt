@@ -35,6 +35,8 @@ class FeedActivity : AppCompatActivity() {
         binding = ActivityFeedBinding.inflate(layoutInflater)
         setContentView(binding.root)
         feedResponseData = DataManagerUtils.feedDataResponse
+        DataManagerUtils.allSelectedItems.clear()
+        DataManagerUtils.selectedFeetItem.clear()
         val categoryPagerAdapter = CategoryPagerAdapter(
             this, supportFragmentManager,
             feedResponseData
@@ -45,18 +47,35 @@ class FeedActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         binding.fragment.hide()
 
-        binding.txtNext.setOnClickListener{
-            binding.tabs.hide()
-            binding.viewPager.hide()
-            binding.txtNext.hide()
-            binding.fragment.show()
-            val fragmentManager = supportFragmentManager
-            val fragmentTransaction = fragmentManager.beginTransaction()
+        binding.txtNext.setOnClickListener{view->
 
-            val fragment = FeedCalculateFragment.newInstance()
-            fragmentTransaction.add(R.id.fragment, fragment)
+            val categories = listOf(
+                Pair(1, "Energy"),
+                Pair(2, "Protein"),
+                Pair(3,"Dry Roufages"),
+                Pair(5,"Non Legume")
+            )
+            val selectedCategories = DataManagerUtils.allSelectedItems.map { it.catID }
+            val missingCategory = categories.find { (categoryId, categoryName) ->
+                selectedCategories.none { it == categoryId }
+            }
+            if (missingCategory != null) {
+                val (_, categoryName) = missingCategory
+                AppUtils.showSnackMessage("Please select one item from $categoryName", view)
+            } else {
+                binding.tabs.hide()
+                binding.viewPager.hide()
+                binding.txtNext.hide()
+                binding.fragment.show()
+                val fragmentManager = supportFragmentManager
+                val fragmentTransaction = fragmentManager.beginTransaction()
 
-            fragmentTransaction.commit()
+                val fragment = FeedCalculateFragment.newInstance()
+                fragmentTransaction.add(R.id.fragment, fragment)
+
+                fragmentTransaction.commit()
+            }
+
         }
     }
     override fun onBackPressed() {

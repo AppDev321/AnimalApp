@@ -1,7 +1,10 @@
 package com.example.myapplication.rosetta;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
+
+import com.yariksoffice.lingver.Lingver;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -63,9 +66,12 @@ public class LanguageSwitcher {
         LocalesUtils.setLocalesPreferenceManager(mLocalesPreferences);
 
         // Setting app locale to match the user preferred one
-        LocalesUtils.setAppLocale(mContext,
-                mLocalesPreferences
-                        .getPreferredLocale(LocalesPreferenceManager.USER_PREFERRED_LOCALE));
+      Locale prefLocale =  mLocalesPreferences
+                .getPreferredLocale(LocalesPreferenceManager.USER_PREFERRED_LOCALE);
+        LocalesUtils.setAppLocale(mContext, prefLocale);
+
+
+        Lingver.getInstance().setLocale(mContext, prefLocale);
     }
 
     /**

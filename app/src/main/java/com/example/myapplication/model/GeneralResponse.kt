@@ -61,7 +61,8 @@ data class FeedItem(
     @SerializedName("dcp") var dcp: Double = 0.0,
     @SerializedName("tdn") var tdn: Double = 0.0,
     @SerializedName("cp") var cp: Double = 0.0,
-    var categoryName:String = ""
+    var categoryName:String = "",
+    var amountOfKg :Double = 0.0
 )
 
 

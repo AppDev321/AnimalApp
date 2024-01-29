@@ -109,8 +109,9 @@ class LoginActivity : AppCompatActivity() {
         menuItem.setOnClickListener{
 
             App.languageSwitcher.showChangeLanguageDialog(this) { locale ->
-                App.languageSwitcher = LanguageSwitcher(this,locale)
+               App.languageSwitcher = LanguageSwitcher(this,locale)
             }
+
         }
        // setSupportActionBar(toolbar)
 
@@ -128,9 +129,9 @@ class LoginActivity : AppCompatActivity() {
 
         if (id == R.id.action_settings) {
 
-            App.languageSwitcher.showChangeLanguageDialog(this) { locale ->
+         /*   App.languageSwitcher.showChangeLanguageDialog(this) { locale ->
                 App.languageSwitcher = LanguageSwitcher(this,locale)
-            }
+            }*/
             return true
         }
 
