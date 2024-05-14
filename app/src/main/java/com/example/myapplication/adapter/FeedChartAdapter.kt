@@ -40,7 +40,7 @@ class FeedChartAdapter(val itemList: List<FeedItem>) :
 
     inner class ModelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var itemSr: TextView
+
         var itemName: TextView
         var itemDCP: TextView
         var itemDM: TextView
@@ -48,7 +48,7 @@ class FeedChartAdapter(val itemList: List<FeedItem>) :
         var itemKG: TextView
         var itemCat: TextView
         init {
-            itemSr = itemView.findViewById(R.id.txtSr) as TextView
+
             itemDCP = itemView.findViewById(R.id.txtDCP) as TextView
             itemName = itemView.findViewById(R.id.txtName) as TextView
             itemDM = itemView.findViewById(R.id.txtDM) as TextView
